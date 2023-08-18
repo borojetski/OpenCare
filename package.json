@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e js,ejs,html,css server.js"
+    "start": "node server.js",
+    "mon": "nodemon -e js,ejs,html,css server.js"
   },
   "author": "Paul Borowiecki",
   "license": "ISC",
