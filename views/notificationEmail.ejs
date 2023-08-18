@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns="https://www.w3.org/1999/xhtml"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title></title>
+    
+    <style>
+      table,
+      td,
+      div,
+      h1,
+      p {
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      /* crucial for Gmail! */
+      word-spacing: normal;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url(cid:background);
+    "
+  >
+    <div
+      role="article"
+      aria-roledescription="email"
+      lang="en"
+      style="
+        text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      "
+    >
+ 
+      <table role="presentation" style="width:100%;border:none;border-spacing:0;">
+        <tr>
+          <td align="center" style="padding:0;">
+            <!--[if mso]>
+            <table role="presentation" align="center" style="width:600px">
+            <tr>
+              <td>
+                <![endif]-->
+                <table role="presentation" style="width:94%; max-width: 920px;border:none;border-spacing:0;text-align:left;font-family:Arial, Helvetica, sans-serif;font-size:16px;line-height:22px;color:#e84f13eb">
+                  <tr>
+                    <td style="padding: 40px 30px 30px 30px; text-align: center; font-size: 26px; font-weight: bold">
+                      <p style="color: #ff0000">Red Balloon</p>            
+                    </td>
+                  </tr>
+                  <tr>
+                      <td style="padding-bottom: 10px; text-align: center;">
+                        
+                        <h1 style="margin-top: 0; margin-bottom: 16px; font-size: 18px; line-height: 26px; font-weight: bold; letter-spacing: -0.02em;">Hi, <%= indAlert.userName %></h1>
+                      <h1 style="margin-top: 0; margin-bottom: 16px; font-size: 18px; line-height: 26px; font-weight: bold; letter-spacing: -0.02em;">Time to celebrate!</h1>
+                      <!-- <p style="margin: 0; font-size: 18px; font-weight: bold;">Upcoming birthdays</p> -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 15px 30px 11px 30px; font-size: 0; background-color: rgba(255, 255, 255, 0.5); border-bottom: 1px solid #f0f0f5; border-radius: 10px; border-color: rgba(201, 201, 207, 0.34)">
+                      <!--[if mso]>
+                        <table role="presentation" width="100%">
+                          <tr>
+                            <td style="width: 145px;" align="left" valign="top">
+                              <![endif]-->
+                              <div class="col-sml" style="display: inline-block; width: 100%; max-width: 285px; vertical-align: top; padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif; line-height: 18px; color: #363636;">
+
+                                <!-- <p style="font-size: 18px; color: #e84f13eb; margin-top: 0; margin-bottom: 12px; font-weight: bold;">Tomorrow:</p> -->
+                                <% for (let i = 0; i < indAlert.individualBirthdayAlert.length; i++) { %>
+                                <p style="font-size: 16px; margin-top: 0;"><span style="font-weight: bold;">
+                                  <%= indAlert.individualBirthdayAlert[i].birthdayPerson %>
+                                  :</span><span style="font-weight: normal;">                                     
+                                    <%= indAlert.individualBirthdayAlert[i].birthday %></span></p> 
+                                <% } %>   
+                              </div>
+                  </tr>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

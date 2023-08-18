@@ -1,0 +1,31 @@
+{
+  "name": "opencare",
+  "version": "1.0.0",
+  "description": "A caregiver management app that tracks medications, appointments, with collaboration tools to help keep everyone in sync.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -e js,ejs,html,css server.js"
+  },
+  "author": "Paul Borowiecki",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "connect-mongo": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.3",
+    "method-override": "^3.0.0",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.4.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "validator": "^13.11.0"
+  }
+}
