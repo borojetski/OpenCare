@@ -3,10 +3,8 @@ require("dotenv").config({ path: "./config/.env" });
 
 const connectDB = async () => {
     try {
-        // stop deprication warning
         mongoose.set("strictQuery", true);
-        const conn = await mongoose
-            .connect(process.env.DB_STRING, {
+        const conn = await mongoose.connect(process.env.DB_STRING, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
                 dbName: "opencare",
