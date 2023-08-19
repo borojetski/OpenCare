@@ -4,7 +4,7 @@ const fs = require('fs');
 const { ObjectId } = require("mongodb")
 
 module.exports = {
-  getProfile: async (req, res) => {
+  getDashboard: async (req, res) => {
     try {
       const currentDate = new Date(); // Get current date
       const posts = await BirthdayPerson.aggregate([
@@ -52,7 +52,7 @@ module.exports = {
         { $sort: { daysUntilNextBirthday: 1 } } //sort ascending
       ]);
   
-      res.render("profile.ejs", { posts: posts, user: req.user });
+      res.render("dashboard.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -131,7 +131,7 @@ module.exports = {
       });
       console.log(req.body)
       console.log("Your friend or family member has been added!");
-      res.redirect("/profile");
+      res.redirect("/dashboard");
     } catch (err) {
       console.log(err);
     }
@@ -145,7 +145,7 @@ module.exports = {
         }
       );
       console.log("Post Updated");
-      res.redirect("/profile");
+      res.redirect("/dashboard");
     } catch (err) {
       console.log(err);
     }
@@ -158,9 +158,9 @@ module.exports = {
       // Delete post from db
       await BirthdayPerson.deleteOne({ _id: req.params.id });
       console.log("Deleted Post");
-      res.redirect("/profile");
+      res.redirect("/dashboard");
     } catch (err) {
-      res.redirect("/profile");
+      res.redirect("/dashboard");
     }
   },
   deleteAcct: async (req, res) => {
@@ -173,7 +173,7 @@ module.exports = {
       console.log("Deleted User Acct");
       res.redirect("/");
     } catch (err) {
-      res.redirect("/profile");
+      res.redirect("/dashboard");
     }
   },
 };

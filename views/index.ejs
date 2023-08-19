@@ -1,159 +1,59 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>OpenCare</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="css/main.css" />
-	</head>
-	<body class="is-preload">
+<%- include('partials/header') -%>
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+<main class="container-fluid login-page">
+    <div class="row d-flex justify-content-center mt-5 pt-5">
+        <a href="/login" class="col-3 btn btn-primary mx-4"> Login</a>
+        <a href="/signup" class="col-3 btn btn-primary mx-4"> Signup</a>
+    </div>
+    <div class="row d-flex mt-5 pt-5">
+        <div>
+            <img src="/images/balloon_logo.png" class="balloonLogo" alt="red balloon logo">
+        </div>
+    </div>
+    <div class="d-flex flex-column align-items-center">
+        <section id="overview" class="col-lg-9 mt-5">
+        <div class="login-section text-start txt-shaded-w-y">
+            <p>Let’s countdown to Birthday Town! This app allows users to easily keep track of friends' and family members' birthdays. It will send email reminders leading up to each birthday to help you remember to celebrate your loved ones.</p>
+        </div>
+        </section>
+        <section id="how_to" class="col-lg-9 mt-5">
+        <div class="login-section text-start txt-shaded-w-y">
+            <header>
+            <h2 class="my-5">How to Use</h2>
+            </header>
+            <ol>
+                <li>Create an account and login</li>
+                <li>Add a friend or family member to your list</li>
+                <li>Fill in their name, birthday, your relationship, and any gift or party ideas</li>
+                <li>The app stores this birthday info in a database and sends automated email reminders leading up to each birthday
+                    <ul>
+                        <li>1 month before - to plan the party</li>
+                        <li>1 week before - to get the gift</li>  
+                        <li>1 day before - to do the thing</li>
+                    </ul>
+                </li>
+                <li>View your dashboard to see all upcoming birthdays</li>
+                <li>Come back anytime to add more!</li>  
+            </ol>        
+            <p>We hope this app helps you easily remember all your loved ones' special days! Please contact us at 40plusbday@gmail.com if you have any issues.</p>
+        </div>
+        </section>
+        <section id="privacy" class="col-lg-9 mt-5">
+        <div class="login-section text-start txt-shaded-w-y">
+            <header>
+            <h2 class="my-5">Privacy Policy</h2>
+            </header>
+            <p>We respect your privacy. This app collects only the information necessary for creating an account and sending birthday reminders. The information collected includes your name, email address, password, birthday dates and any additional notes you provide.</p>
+            <p>Your data is not processed, used, sold, traded, advertised, or given to any third parties in any way. Your information is kept confidential and secure.</p>
+            <p>Email reminders are sent using a secure SMTP service. Message contents are not stored, read, or retained after sending.</p>
+            <p>Account information is stored in a secure database protected by encryption, firewalls, and access controls. Data is kept only as long as your account is active.</p>
+        </div>
+        <div class="d-flex justify-content-center my-5">
+            <a href="#tippity-top" class="btn btn-primary">Back to Top</a>
+        </div>
+        </section>
+    </div>
+</main>
+    
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="index.html">OpenCare</a></h1>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
-					</header>
-
-				<!-- Menu -->
-					<nav id="menu">
-						<div class="inner">
-							<h2>Menu</h2>
-							<ul class="links">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="generic.html">Generic</a></li>
-								<li><a href="elements.html">Elements</a></li>
-								<li><a href="#">Log In</a></li>
-								<li><a href="#">Sign Up</a></li>
-							</ul>
-						</div>
-					</nav>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Banner -->
-							<section id="banner">
-								<header>
-									<h2>Google Calendar</h2>
-									<p>Sed feugiat tempus sem amet imperdiet</p>
-								</header>
-								<!-- <footer>
-									<ul class="actions special">
-										<li><a href="#" class="button large">Get Started</a></li>
-									</ul>
-								</footer> -->
-							</section>
-
-						<!-- One -->
-							<section id="one" class="features">
-								<header class="major">
-									<h2>Medications</h2>
-									<p>Mauris lectus odio, mattis nec velit eu, luctus dictum diam. Quis<br />
-									tempus que ornare purus a bibendum ultricies.</p>
-								</header>
-								<div class="content">
-									<section class="feature">
-										<span class="icon major fa-gem"></span>
-										<h3>Etiam sed feugiat</h3>
-										<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipit euismod habitant lorem ipsum dolor.</p>
-									</section>
-									<section class="feature">
-										<span class="icon major fa-save"></span>
-										<h3>Ipsum et bibendum</h3>
-										<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipit euismod habitant lorem ipsum dolor.</p>
-									</section>
-									<section class="feature">
-										<span class="icon major fa-newspaper"></span>
-										<h3>Sit lorem aliquam</h3>
-										<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipit euismod habitant lorem ipsum dolor.</p>
-									</section>
-								</div>
-							</section>
-
-						<!-- Two -->
-							<section id="two" class="spotlight">
-								<div class="image"><img src="images/pic01.jpg" alt="" /></div><div class="content">
-									<h2>Appointments</h2>
-									<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipa facilisis at, vestibulum id urna. Lorem ipsum dolor sit amet sollicitudin.</p>
-								</div>
-							</section>
-
-						<!-- Three -->
-							<section id="three" class="spotlight alt">
-								<div class="image"><img src="images/pic02.jpg" alt="" /></div><div class="content">
-									<h2>Shopping List</h2>
-									<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipa facilisis at, vestibulum id urna. Lorem ipsum dolor sit amet sollicitudin.</p>
-								</div>
-							</section>
-
-						<!-- Four -->
-							<section id="four" class="spotlight">
-								<div class="image"><img src="images/pic03.jpg" alt="" /></div><div class="content">
-									<h2>Porta vestibulum</h2>
-									<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipa facilisis at, vestibulum id urna. Lorem ipsum dolor sit amet sollicitudin.</p>
-								</div>
-							</section>
-
-						<!-- Five -->
-							<section id="five" class="cta">
-								<header>
-									<h2>Sed euismod nullam</h2>
-									<p>Odio mattis nec velit eu, luctus dictum diam. Quis<br />
-									tempus que ornare purus a bibendum ultricies</p>
-								</header>
-								<ul class="actions special">
-									<li><a href="#" class="button large">Get Started</a></li>
-								</ul>
-							</section>
-
-					</div>
-
-				<!-- Footer -->
-					<section id="footer">
-						<div class="inner">
-							<section class="about">
-								<h3>Proin sed ultricies</h3>
-								<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate.</p>
-								<ul class="actions">
-									<li><a href="#" class="button">Learn More</a></li>
-								</ul>
-							</section>
-							<section>
-								<h3>Get in Touch</h3>
-								<ul class="contact">
-									<li class="icon solid fa-phone">(000) 000-0000</li>
-									<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-									<li class="icon brands fa-twitter"><a href="#">@untitled-tld</a></li>
-									<li class="icon brands fa-facebook-f"><a href="#">facebook.com/untitled</a></li>
-								</ul>
-							</section>
-							<section>
-								<h3>Mailing Address</h3>
-								<p>Untitled Corp<br />
-								1234 Fictional Road<br />
-								Suite 5432<br />
-								Nashville, TN 00000<br />
-								USA</p>
-							</section>
-						</div>
-						<div class="copyright">
-							<p>Copyright &copy; Untitled Corp. All rights reserved.</p>
-						</div>
-					</section>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="js/jquery.min.js"></script>
-			<script src="js/browser.min.js"></script>
-			<script src="js/breakpoints.min.js"></script>
-			<script src="js/util.js"></script>
-			<script src="js/main.js"></script>
-
-	</body>
-</html>
+<%- include('partials/footer') -%>

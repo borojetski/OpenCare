@@ -2,17 +2,15 @@ const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
 
-//if user is logged in redirect to profile.ejs, otherwise load login page
 exports.getLogin = (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    return res.redirect("/dashboard");
   }
   res.render("login", {
     title: "Login",
   });
 };
 
-//create user login, errors reload page, success redirects to profile.ejs
 exports.postLogin = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
@@ -41,7 +39,7 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.session.returnTo || "/profile");
+      res.redirect(req.session.returnTo || "/dashboard");
     });
   })(req, res, next);
 };
@@ -58,18 +56,22 @@ exports.logout = (req, res) => {
   });
 };
 
-//once signed up, redirect to profile.ejs
-exports.getSignup = (req, res) => {
+exports.getSignup = async (req, res) => {
   if (req.user) {
-    return res.redirect("/profile");
+    return res.redirect("/dashboard"); 
   }
-  res.render("signup", {
-    title: "Create Account",
-  });
-};
 
-//create new account, errors or duplicate acct reloads page, success redirects to profile.ejs
-exports.postSignup = (req, res, next) => {
+  try {
+    await res.render("signup", {
+      title: "Create Account"
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Error rendering signup page");
+  }
+}
+
+exports.postSignup = async (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
@@ -94,68 +96,54 @@ exports.postSignup = (req, res, next) => {
     password: req.body.password,
   });
 
-  User.findOne(
-    { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
-    (err, existingUser) => {
+  try {
+    const existingUser = await User.findOne({
+      $or: [{ email: req.body.email }, { userName: req.body.userName }],
+    });
+
+    if (existingUser) {
+      req.flash("errors", {
+        msg: "Account with that email address or username already exists.",
+      });
+      return res.redirect("../signup");
+    }
+
+    await user.save();
+
+    req.logIn(user, async (err) => {
       if (err) {
         return next(err);
       }
-      if (existingUser) {
-        req.flash("errors", {
-          msg: "Account with that email address or username already exists.",
-        });
-        return res.redirect("../signup");
-      }
-      user.save((err) => {
-        if (err) {
-          return next(err);
-        }
-        req.logIn(user, (err) => {
-          if (err) {
-            return next(err);
+      res.redirect("/dashboard");
+    });
+  } catch (err) {
+    return next(err);
           }
-          res.redirect("/profile");
-        });
-      });
-    }
-  );
-};
+}
 
-// Edit user profile
-exports.updateProfile = (req, res, next) => {
-  // Get the user ID from the request parameters
-  const userId = req.params.id;
+exports.updateDashboard = async (req, res, next) => {
+  try {
+    // Get the user ID from the request parameters
+    const userId = req.params.id;
 
-  // Find the user by ID
-  User.findById(userId, (err, user) => {
-    if (err) {
-      return next(err);
-    }
+    // Find the user by ID
+    const user = await User.findById(userId);
 
-    // Update the user's profile fields
-    user.userName = req.body.userName;
+    user.userName = req.body.userName; 
     user.email = req.body.email;
 
     // Check if the password field has been modified
     if (req.body.password) {
       // Set the new password and save the user
       user.password = req.body.password;
-      user.save((err) => {
-        if (err) {
-          return next(err);
-        }
-        req.flash("success", { msg: "Profile updated successfully!" });
-        res.redirect("/profile");
-      });
-    } else {
-      // Save the updated user without changing the password
-      user.save((err) => {
-        if (err) {
-          return next(err);
-        }
-        req.flash("success", { msg: "Profile updated successfully!" });
-        res.redirect("/profile");
-      });
     }
-  });
+    
+    await user.save();
+    
+    req.flash("success", { msg: "Profile updated successfully!" });
+    res.redirect("/dashboard");
+
+  } catch (err) {
+    return next(err);
+  }
 };
