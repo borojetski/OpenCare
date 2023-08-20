@@ -1,7 +1,8 @@
-const mongoose = require("mongoose");
-const connectDB = require("./config/database");
+require("dotenv").config({ path: "./config/.env" });
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
+const connectDB = require("./config/database");
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -10,8 +11,6 @@ const flash = require("express-flash");
 const logger = require("morgan");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
-
-require("dotenv").config({ path: "./config/.env" });
 require("./config/passport")(passport);
 
 connectDB();
