@@ -1,40 +1,76 @@
 <%- include('partials/header') -%>
-    <main class="container">
-        <div class="row justify-content-center">
-            <section class="col-6 mt-5">
-                <% if (locals.messages.errors) { %>
-                    <% messages.errors.forEach( el => { %>
-                        <div class="alert alert-danger"><%= el.msg %></div>
-                    <% }) %>    
-                <% } %>
-                <% if (locals.messages.info) { %>
-                    <% messages.info.forEach( el => { %>
-                        <div class="alert alert-info"><%= el.msg %></div>
-                    <% }) %>    
-                <% } %>
-                <!-- directs to auth.js -> exports.postSignup (by way of main.js) -->
-                <form action="/signup" method="POST">
-                    <div class="mb-3">
-                        <label for="userName" class="form-label form-signup">User Name</label>
-                        <input type="text" class="form-control" id="userName" name="userName">
-                      </div>
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label form-signup">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="password" class="form-label form-signup">Password</label>
-                      <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirmPassword" class="form-label form-signup">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
-                      </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
-            </section>
-        </div>
-    </main>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">OpenCare</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="/">Home</a></li>
+								<li><a href="/dashboard">Dashboard</a></li>
+								<li><a href="/logout">Sign Out</a></li>
+							</ul>
+						</div>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<section id="content" class="default">
+							<header class="major">
+								<h2>Sign Up</h2>
+							</header>
+							<div class="content">
+								<% if (locals.messages.errors) { %>
+									<% messages.errors.forEach( el => { %>
+										<div style="color: rgb(191, 146, 141)"><%= el.msg %></div></br>
+									<% }) %>    
+								<% } %>
+								<% if (locals.messages.info) { %>
+									<% messages.info.forEach( el => { %>
+										<div style="color: rgb(191, 146, 141)"><%= el.msg %></div></br>
+									<% }) %>    
+								<% } %>
+								<form action="/signup" method="POST">
+									<div>
+										<label for="userName">User Name</label>
+										<input type="text" id="userName" name="userName">
+									  </div>
+									<div>
+									  <label for="inputEmail">Email address</label>
+									  <input type="email" id="inputEmail" aria-describedby="emailHelp" name="email" placeholder="We'll never share your email with anyone else.">
+									</div>
+									<div>
+									  <label for="inputPassword">Password</label>
+									  <input type="password" id="inputPassword" name="password">
+									</div>
+									<div>
+										<label for="confirmPassword">Confirm Password</label>
+										<input type="password" id="confirmPassword" name="confirmPassword">
+									  </div>
+									</br>
+									<button type="submit" class="button primary">Submit</button>
+								  </form>
+							</div>
+						</section>
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="copyright">
+							<p>Copyright &copy; Paul Borowiecki All rights reserved.</p>
+						</div>
+					</section>
+
+			</div>
 
 <%- include('partials/footer') -%>

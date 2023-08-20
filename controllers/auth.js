@@ -79,10 +79,10 @@ exports.postSignup = async (req, res, next) => {
     validationErrors.push({ msg: "Please enter a valid email address." });
   if (!validator.isLength(req.body.password, { min: 8 }))
     validationErrors.push({
-      msg: "Password must be at least 8 characters long",
+      msg: "Password must be at least 8 characters long.",
     });
   if (req.body.password !== req.body.confirmPassword)
-    validationErrors.push({ msg: "Passwords do not match" });
+    validationErrors.push({ msg: "Passwords do not match." });
 
   if (validationErrors.length) {
     req.flash("errors", validationErrors);

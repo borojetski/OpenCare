@@ -2117,22 +2117,22 @@ input, select, textarea {
 
 	::-webkit-input-placeholder {
 		color: #ffffff !important;
-		opacity: 1.0;
+		opacity: 0.5;
 	}
 
 	:-moz-placeholder {
 		color: #ffffff !important;
-		opacity: 1.0;
+		opacity: 0.5;
 	}
 
 	::-moz-placeholder {
 		color: #ffffff !important;
-		opacity: 1.0;
+		opacity: 0.5;
 	}
 
 	:-ms-input-placeholder {
 		color: #ffffff !important;
-		opacity: 1.0;
+		opacity: 0.5;
 	}
 
 /* Icon */

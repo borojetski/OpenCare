@@ -1,9 +1,3 @@
-///
-/// Magnetic by Pixelarity
-/// pixelarity.com | hello@pixelarity.com
-/// License: pixelarity.com/license
-///
-
 /* Form */
 
 	form {
@@ -147,20 +141,20 @@
 
 	::-webkit-input-placeholder {
 		color: _palette(fg-light) !important;
-		opacity: 1.0;
+		opacity: 0.5;
 	}
 
 	:-moz-placeholder {
 		color: _palette(fg-light) !important;
-		opacity: 1.0;
+		opacity: 0.5;
 	}
 
 	::-moz-placeholder {
 		color: _palette(fg-light) !important;
-		opacity: 1.0;
+		opacity: 0.5;
 	}
 
 	:-ms-input-placeholder {
 		color: _palette(fg-light) !important;
-		opacity: 1.0;
+		opacity: 0.5;
 	}
