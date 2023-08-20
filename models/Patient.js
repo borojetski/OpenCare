@@ -6,21 +6,21 @@ const PatientSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  birthday: {
+  bday: {
     type: Date,
-    required: true,
+    required: false,
+  },
+  phoneNbr: {
+    type: String,
+    required: false
+  },
+  insurNbr: {
+    type: String,
+    required: false
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: User
-  },
-  monthNotificationSent: {
-    type: Boolean,
-    default: false,
-  },
-  gifts: {
-    type: [String],
-    default: [],
   },
 })
 
