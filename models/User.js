@@ -7,30 +7,32 @@ const UserSchema = new mongoose.Schema({
   password: String
 })
 
-
 // Password hash middleware.
- 
- UserSchema.pre('save', function save(next) {
-  const user = this
-  if (!user.isModified('password')) { return next() }
-  bcrypt.genSalt(10, (err, salt) => {
-    if (err) { return next(err) }
-    bcrypt.hash(user.password, salt, (err, hash) => {
-      if (err) { return next(err) }
-      user.password = hash
-      next()
-    })
-  })
-})
-
+UserSchema.pre('save', async function save() {
+  const user = this;
+  if (!user.isModified('password')) {
+    return;
+  }
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(user.password, salt);
+  user.password = hash;
+});
+// To Use:
+// await user.save();
 
 // Helper method for validating user's password.
-
-UserSchema.methods.comparePassword = function comparePassword(candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-    cb(err, isMatch)
-  })
+UserSchema.methods.comparePassword = async function(candidatePassword) {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(isMatch);
+      }
+    });
+  });
 }
-
+// To Use:
+// const match = await user.comparePassword(password);
 
 module.exports = mongoose.model('User', UserSchema)
