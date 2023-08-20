@@ -45,14 +45,16 @@ exports.postLogin = (req, res, next) => {
 };
 
 exports.logout = (req, res) => {
-  req.logout(() => {
-    console.log('User has logged out.')
-  })
-  req.session.destroy((err) => {
-    if (err)
-      console.log("Error : Failed to destroy the session during logout.", err);
-    req.user = null;
-    res.redirect("/");
+  if (!req.session) {
+    return res.redirect('/login');
+  }
+  req.session.regenerate(err => {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      req.session.destroy(err => {
+        res.redirect('/'); 
+      });
+    });
   });
 };
 
