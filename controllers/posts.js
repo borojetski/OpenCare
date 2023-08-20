@@ -1,58 +1,12 @@
-const BirthdayPerson = require("../models/BirthdayPerson");
+const Patient = require("../models/Patient");
 const User = require("../models/User");
-const fs = require('fs');
-const { ObjectId } = require("mongodb")
+// const fs = require('fs');
+// const { ObjectId } = require("mongodb")
 
 module.exports = {
   getDashboard: async (req, res) => {
     try {
-      const currentDate = new Date(); // Get current date
-      const posts = await BirthdayPerson.aggregate([
-        { $match: { userId: ObjectId(req.user.id) } }, //filter only user's people
-        {
-          $addFields: {
-            nextBirthday: { //compare each person's bday to current date
-              $cond: {
-                if: {
-                  $gte: [
-                    { $dateFromParts: { year: { $year: currentDate }, month: { $month: "$birthday" }, day: { $dayOfMonth: "$birthday" } } },
-                    currentDate
-                  ]
-                },
-                then: { //if in the future, build field
-                  $dateFromParts: { 
-                    year: { $year: currentDate },
-                    month: { $month: "$birthday" },
-                    day: { $dayOfMonth: "$birthday" },
-                    timezone: { $literal: "UTC" }
-                  }
-                },
-                else: { //else, build field for next year (not sure how this will function as December approaches)
-                  $dateFromParts: {
-                    year: { $add: [{ $year: currentDate }, 1] },
-                    month: { $month: "$birthday" },
-                    day: { $dayOfMonth: "$birthday" },
-                    timezone: { $literal: "UTC" }
-                  }
-                }
-              }
-            }
-          }
-        },
-        {
-          $addFields: {
-            daysUntilNextBirthday: { //calc diff to current date and convert to ms
-              $divide: [
-                { $subtract: ["$nextBirthday", currentDate] },
-                1000 * 60 * 60 * 24 // Convert milliseconds to days
-              ]
-            }
-          }
-        },
-        { $sort: { daysUntilNextBirthday: 1 } } //sort ascending
-      ]);
-  
-      res.render("dashboard.ejs", { posts: posts, user: req.user });
+      res.render("dashboard.ejs");
     } catch (err) {
       console.log(err);
     }
@@ -60,7 +14,7 @@ module.exports = {
   // probably need to comment/delete the below section out
   getFeed: async (req, res) => {
     try {
-      const posts = await BirthdayPerson.find({ userId: req.user.id }).sort({ createdAt: "desc" }).lean();
+      const posts = await Patient.find({ userId: req.user.id }).sort({ createdAt: "desc" }).lean();
       res.render("feed.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
@@ -68,7 +22,7 @@ module.exports = {
   },
   getPost: async (req, res) => {
     try {
-      const post = await BirthdayPerson.findById(req.params.id);
+      const post = await Patient.findById(req.params.id);
       res.render("post.ejs", { post: post, user: req.user });
     } catch (err) {
       console.log(err);
@@ -76,7 +30,7 @@ module.exports = {
   },
   getCsv: async (req, res) => {
     try {
-      const people = await BirthdayPerson.find({ userId: req.params.id });
+      const people = await Patient.find({ userId: req.params.id });
       
       // csvData will be an array of strings representing the User object and the people objects; each CSV string in the array represents one row in the final file
       const fields = ['name', 'birthday', 'relation', 'gifts'];
@@ -122,7 +76,7 @@ module.exports = {
   },
   createPost: async (req, res) => {
     try {
-      await BirthdayPerson.create({
+      await Patient.create({
         name: req.body.name,
         relation: req.body.relation,
         birthday: req.body.birthday,
@@ -138,7 +92,7 @@ module.exports = {
   },
   editPost: async (req, res) => {
     try {
-      await BirthdayPerson.findOneAndUpdate(
+      await Patient.findOneAndUpdate(
         { _id: req.params.id },
         {
           $set: {name : req.body.name, birthday : req.body.birthday, gifts : req.body.gifts},
@@ -153,10 +107,10 @@ module.exports = {
   deletePost: async (req, res) => {
     try {
       // Find post by id
-      let post = await BirthdayPerson.findById({ _id: req.params.id });
+      let post = await Patient.findById({ _id: req.params.id });
       
       // Delete post from db
-      await BirthdayPerson.deleteOne({ _id: req.params.id });
+      await Patient.deleteOne({ _id: req.params.id });
       console.log("Deleted Post");
       res.redirect("/dashboard");
     } catch (err) {
@@ -166,7 +120,7 @@ module.exports = {
   deleteAcct: async (req, res) => {
     try {
       // Delete posts from db
-      await BirthdayPerson.deleteMany({ userId: req.params.id });
+      await Patient.deleteMany({ userId: req.params.id });
       console.log("Deleted All User Posts");
       // Delete user from db
       await User.deleteOne({ _id: req.params.id });

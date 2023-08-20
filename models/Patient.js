@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const User = require('./User')
 
-const BirthdayPersonSchema = new mongoose.Schema({
+const PatientSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -9,10 +9,6 @@ const BirthdayPersonSchema = new mongoose.Schema({
   birthday: {
     type: Date,
     required: true,
-  },
-  relation: {
-    type: String,
-    required: false,
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -22,18 +18,10 @@ const BirthdayPersonSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  weekNotificationSent: {
-    type: Boolean,
-    default: false,
-  },
-  tomorrowNotificationSent: {
-    type: Boolean,
-    default: false,
-  },
   gifts: {
     type: [String],
     default: [],
   },
 })
 
-module.exports = mongoose.model('BirthdayPerson', BirthdayPersonSchema)
+module.exports = mongoose.model('Patient', PatientSchema)
