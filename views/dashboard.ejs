@@ -10,7 +10,7 @@
 							<a href="#menu">Menu</a>
 						</nav>
 					</header>
-
+				
 				<!-- Menu -->
 					<nav id="menu">
 						<div class="inner">
@@ -23,9 +23,45 @@
 							</ul>
 						</div>
 					</nav>
-
+				
 				<!-- Main -->
 					<div id="main">
+
+						<!-- Get Started -->
+						<section id="getStarted" class="cta">
+
+							<header>
+							  <h2>Welcome!</h2>
+							  <p>Create a profile for your patient or loved one.<br/>
+							  Once created, various fields will populate below.</p>
+							</header>
+						  
+							<button id="addPatientBtn">Add Your Patient or Love One</button>							
+							<dialog id="addPatientDialog">
+								<form method="post" action="/add-patient">
+								  <h3>Add Patient</h3>
+								  
+								  <label for="name">Name:</label>
+								  <input type="text" id="name" name="name">
+								  
+								  <label for="bday">Birthday:</label> 
+								  <input type="date" id="bday" name="bday">
+								  
+								  <label for="phoneNbr">Phone Number:</label> 
+								  <input type="tel" id="phoneNbr" name="phoneNbr">
+								  
+								  <label for="insurNbr">Insurance ID:</label> 
+								  <input type="text" id="insurNbr" name="insurNbr">
+								  
+								  <button type="submit">Submit</button>
+								  <button type="button">Cancel</button>
+								</form>
+							  </dialog>							  
+						  
+						  </section>		  
+				
+						<!-- Patient Profile Modal -->
+
 
 						<!-- Banner -->
 						<section id="tippity-top" class="cta">
@@ -107,18 +143,6 @@
 								</div>
 							</section>
 
-						<!-- Five -->
-							<section id="five" class="cta">
-								<header>
-									<h2>Sed euismod nullam</h2>
-									<p>Odio mattis nec velit eu, luctus dictum diam. Quis<br />
-									tempus que ornare purus a bibendum ultricies</p>
-								</header>
-								<ul class="actions special">
-									<li><a href="#" class="button large">Get Started</a></li>
-								</ul>
-							</section>
-
 					</div>
 
 				<!-- Footer -->
@@ -147,5 +171,14 @@
 					</section>
 
 			</div>
+
+<script>
+  const addPatientBtn = document.getElementById('addPatientBtn');
+  const addPatientDialog = document.getElementById('addPatientDialog');
+
+  addPatientBtn.addEventListener('click', () => {
+    addPatientDialog.showModal();
+  });
+</script>
 
 <%- include('partials/footer') -%>

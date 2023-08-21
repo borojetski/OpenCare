@@ -3484,3 +3484,13 @@ input, select, textarea {
 			}
 
 		}
+
+#addPatientDialog {
+  background: rgba(50, 56, 63, 1);
+  width: 23em;
+  
+  .inner {
+    padding: 2.5em;
+    width: 100%;
+  }
+}
