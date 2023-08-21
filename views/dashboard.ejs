@@ -188,20 +188,15 @@
 });
 </script>
 
-<% console.log("pre-script", user.hasPatientProfile); %>
 <!-- Show/Hide Welcome/Pt Profile -->
-<% if (user.hasPatientProfile) { %>
 <script>
-	console.log("getstarted", user.hasPatientProfile);
-	document.getElementById('getStarted').style.display = 'none';
-	document.getElementById('patientProfile').style.display = 'block';
+	if (<%= user.hasPatientProfile %>) {
+		document.getElementById('getStarted').style.display = 'none'; 
+	  	document.getElementById('patientProfile').style.display = 'block';
+	} else {
+	  	document.getElementById('getStarted').style.display = 'block';
+	  	document.getElementById('patientProfile').style.display = 'none';
+	}
 </script>
-<% } else { %>
-<script>
-	console.log("pt pro", user.hasPatientProfile);
-	document.getElementById('getStarted').style.display = 'block';
-	document.getElementById('patientProfile').style.display = 'none'; 
-</script>  
-<% } %>
 
 <%- include('partials/footer') -%>
