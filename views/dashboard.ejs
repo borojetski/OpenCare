@@ -64,7 +64,7 @@
 
 
 						<!-- Banner -->
-						<section id="tippity-top" class="cta">
+						<section id="tippity-top patientProfile" class="cta">
 							<header>
 								<% for(let i=0; i<patients.length; i++) {%>
 								<h2><%= patients[i].name %></h2>
@@ -76,14 +76,14 @@
 						</section>
 
 						<!-- Calendar -->
-						<section id="gcal">
+						<section id="gcal patientProfile">
 							<div class="content">
 								<iframe src="https://calendar.google.com/calendar/embed?height=813&wkst=1&bgcolor=%23ffffff&ctz=Pacific%2FHonolulu&showTitle=0&showNav=1&showPrint=0&showCalendars=0&showTz=0&title=Leo%20Lau&src=YnNkcHRjdWdpdW02NjByY21rdmxsYTY1bTBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23009688" style="border-width:0" width="1317" height="813" frameborder="0" scrolling="no"></iframe>
 							</div>
 						</section>
 
 						<!-- Temp -->
-							<section id="banner">
+							<section id="banner patientProfile">
 								<header>
 									<h2>Google Calendar</h2>
 									<p>Sed feugiat tempus sem amet imperdiet</p>
@@ -96,7 +96,7 @@
 							</section>
 
 						<!-- One -->
-							<section id="one" class="features">
+							<section id="one patientProfile" class="features">
 								<header class="major">
 									<h2>Medications</h2>
 									<p>Mauris lectus odio, mattis nec velit eu, luctus dictum diam. Quis<br />
@@ -122,7 +122,7 @@
 							</section>
 
 						<!-- Two -->
-							<section id="two" class="spotlight">
+							<section id="two patientProfile" class="spotlight">
 								<div class="image"><img src="images/pic01.jpg" alt="" /></div><div class="content">
 									<h2>Appointments</h2>
 									<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipa facilisis at, vestibulum id urna. Lorem ipsum dolor sit amet sollicitudin.</p>
@@ -130,7 +130,7 @@
 							</section>
 
 						<!-- Three -->
-							<section id="three" class="spotlight alt">
+							<section id="three patientProfile" class="spotlight alt">
 								<div class="image"><img src="images/pic02.jpg" alt="" /></div><div class="content">
 									<h2>Shopping List</h2>
 									<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipa facilisis at, vestibulum id urna. Lorem ipsum dolor sit amet sollicitudin.</p>
@@ -138,7 +138,7 @@
 							</section>
 
 						<!-- Four -->
-							<section id="four" class="spotlight">
+							<section id="four patientProfile" class="spotlight">
 								<div class="image"><img src="images/pic03.jpg" alt="" /></div><div class="content">
 									<h2>Porta vestibulum</h2>
 									<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipa facilisis at, vestibulum id urna. Lorem ipsum dolor sit amet sollicitudin.</p>
@@ -174,13 +174,26 @@
 
 			</div>
 
+<!-- Dialog EventListener -->
 <script>
-  const addPatientBtn = document.getElementById('addPatientBtn');
-  const addPatientDialog = document.getElementById('addPatientDialog');
-
-  addPatientBtn.addEventListener('click', () => {
-    addPatientDialog.showModal();
-  });
+	const addPatientBtn = document.getElementById('addPatientBtn');
+	const addPatientDialog = document.getElementById('addPatientDialog');
+	addPatientBtn.addEventListener('click', () => {
+		addPatientDialog.showModal();
+	});
 </script>
+
+<!-- Show/Hide Welcome/Pt Profile -->
+<% if (user.hasPatientProfile) { %>
+<script>
+	document.getElementById('getStarted').style.display = 'none';
+	document.getElementById('patientProfile').style.display = 'block';
+</script>
+<% } else { %>
+<script>
+	document.getElementById('getStarted').style.display = 'block';
+	document.getElementById('patientProfile').style.display = 'none'; 
+</script>  
+<% } %>
 
 <%- include('partials/footer') -%>
