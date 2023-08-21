@@ -54,7 +54,7 @@
 								  <input type="text" id="insurNbr" name="insurNbr">
 								  
 								  <button type="submit">Submit</button>
-								  <button type="button">Cancel</button>
+								  <button type="button" class="dialog-dismiss">Cancel</button>
 								</form>
 							  </dialog>							  
 						  
@@ -181,16 +181,24 @@
 	addPatientBtn.addEventListener('click', () => {
 		addPatientDialog.showModal();
 	});
+	
+	const cancelButton = document.querySelector('.dialog-dismiss');
+	cancelButton.addEventListener('click', () => {
+  	addPatientDialog.close();
+});
 </script>
 
+<% console.log("pre-script", user.hasPatientProfile); %>
 <!-- Show/Hide Welcome/Pt Profile -->
 <% if (user.hasPatientProfile) { %>
 <script>
+	console.log("getstarted", user.hasPatientProfile);
 	document.getElementById('getStarted').style.display = 'none';
 	document.getElementById('patientProfile').style.display = 'block';
 </script>
 <% } else { %>
 <script>
+	console.log("pt pro", user.hasPatientProfile);
 	document.getElementById('getStarted').style.display = 'block';
 	document.getElementById('patientProfile').style.display = 'none'; 
 </script>  
