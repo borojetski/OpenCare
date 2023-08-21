@@ -4,20 +4,20 @@ const router = express.Router();
 //establish controller variables
 const homeController = require("../controllers/home");
 const authController = require("../controllers/auth");
-const postsController = require("../controllers/posts");
+const patientsController = require("../controllers/patients");
 const { ensureAuth } = require("../middleware/auth");
 
 //main routes
 router.get("/", homeController.getIndex);
 router.get("/about", homeController.getAbout);
-router.get("/dashboard", ensureAuth, postsController.getDashboard);
+router.get("/dashboard", ensureAuth, patientsController.getDashboard);
 router.get("/login", authController.getLogin);
-router.post("/login", authController.postLogin);
+router.post("/login", authController.patientLogin);
 router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
-router.post("/signup", authController.postSignup);
+router.post("/signup", authController.patientSignup);
 router.put("/updateDashboard/:id", authController.updateDashboard);
 
-router.get("/feed", postsController.getFeed);
+router.get("/feed", patientsController.getFeed);
 
 module.exports = router;

@@ -38,7 +38,7 @@
 						  
 							<button id="addPatientBtn">Add Your Patient or Love One</button>							
 							<dialog id="addPatientDialog">
-								<form method="POST" action="/post/createPost">
+								<form method="POST" action="/post/createPatient">
 								  <h3>Add Patient</h3>
 								  
 								  <label for="name">Name:</label>
@@ -66,10 +66,12 @@
 						<!-- Banner -->
 						<section id="tippity-top" class="cta">
 							<header>
-								<h2><%= patient.name %></h2>
-								<p>Birthday</p>
-								<p>808-555-5555</p>
-								<p>Insurance #</p>
+								<% for(let i=0; i<patients.length; i++) {%>
+								<h2><%= patients[i].name %></h2>
+								<p><%= patients[i].phoneNbr %></p>
+								<p>DOB: <%= patients[i].bday.toLocaleDateString('en-US', {timeZone: 'UTC', month: '2-digit', day: '2-digit', year: 'numeric'}) %></p>
+								<p>Insurance #<%= patients[i].insurNbr %></p>
+								<% } %>
 							</header>
 						</section>
 

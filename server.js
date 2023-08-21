@@ -10,7 +10,7 @@ const methodOverride = require("method-override");
 const flash = require("express-flash");
 const logger = require("morgan");
 const mainRoutes = require("./routes/main");
-const postRoutes = require("./routes/posts");
+const patientRoutes = require("./routes/patients");
 require("./config/passport")(passport);
 
 connectDB();
@@ -36,7 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use("/", mainRoutes);
-app.use("/post", postRoutes);
+app.use("/patient", patientRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log("Server is running, you better catch it!");

@@ -1,12 +1,13 @@
 const Patient = require("../models/Patient");
 const User = require("../models/User");
 // const fs = require('fs');
-// const { ObjectId } = require("mongodb")
+const { ObjectId } = require("mongodb")
 
 module.exports = {
   getDashboard: async (req, res) => {
     try {
-      res.render("dashboard.ejs", { patient: Patient });
+      const patients = await Patient.find({ user: req.user.id });
+      res.render("dashboard.ejs", { patients: patients, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -14,16 +15,16 @@ module.exports = {
   // probably need to comment/delete the below section out
   getFeed: async (req, res) => {
     try {
-      const posts = await Patient.find({ userId: req.user.id }).sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts, user: req.user });
+      const patients = await Patient.find({ userId: req.user.id }).sort({ createdAt: "desc" }).lean();
+      res.render("feed.ejs", { patients: patients, user: req.user });
     } catch (err) {
       console.log(err);
     }
   },
-  getPost: async (req, res) => {
+  getPatient: async (req, res) => {
     try {
-      const post = await Patient.findById(req.params.id);
-      res.render("post.ejs", { post: post, user: req.user });
+      const patient = await Patient.findById(req.params.id);
+      res.render("patient.ejs", { patient: patient, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -74,7 +75,7 @@ module.exports = {
       res.status(500).send('Internal Server Error');
     }
   },
-  createPost: async (req, res) => {
+  createPatient: async (req, res) => {
     try {
       await Patient.create({
         name: req.body.name,
@@ -90,7 +91,7 @@ module.exports = {
       console.log(err);
     }
   },
-  editPost: async (req, res) => {
+  editPatient: async (req, res) => {
     try {
       await Patient.findOneAndUpdate(
         { _id: req.params.id },
@@ -98,20 +99,20 @@ module.exports = {
           $set: {name : req.body.name, birthday : req.body.birthday, gifts : req.body.gifts},
         }
       );
-      console.log("Post Updated");
+      console.log("Patient Updated");
       res.redirect("/dashboard");
     } catch (err) {
       console.log(err);
     }
   },
-  deletePost: async (req, res) => {
+  deletePatient: async (req, res) => {
     try {
-      // Find post by id
-      let post = await Patient.findById({ _id: req.params.id });
+      // Find patient by id
+      let patient = await Patient.findById({ _id: req.params.id });
       
-      // Delete post from db
+      // Delete patient from db
       await Patient.deleteOne({ _id: req.params.id });
-      console.log("Deleted Post");
+      console.log("Deleted Patient");
       res.redirect("/dashboard");
     } catch (err) {
       res.redirect("/dashboard");
@@ -119,9 +120,9 @@ module.exports = {
   },
   deleteAcct: async (req, res) => {
     try {
-      // Delete posts from db
+      // Delete patients from db
       await Patient.deleteMany({ userId: req.params.id });
-      console.log("Deleted All User Posts");
+      console.log("Deleted All User Patients");
       // Delete user from db
       await User.deleteOne({ _id: req.params.id });
       console.log("Deleted User Acct");
