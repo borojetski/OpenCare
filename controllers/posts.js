@@ -6,7 +6,7 @@ const User = require("../models/User");
 module.exports = {
   getDashboard: async (req, res) => {
     try {
-      res.render("dashboard.ejs");
+      res.render("dashboard.ejs", { patient: Patient });
     } catch (err) {
       console.log(err);
     }
@@ -78,13 +78,13 @@ module.exports = {
     try {
       await Patient.create({
         name: req.body.name,
-        relation: req.body.relation,
-        birthday: req.body.birthday,
+        bday: req.body.bday,
+        phoneNbr: req.body.phoneNbr,
         userId: req.user.id,
-        gifts: req.body.gift,
+        insurNbr: req.body.insurNbr,
       });
       console.log(req.body)
-      console.log("Your friend or family member has been added!");
+      console.log("Your patient or family member has been added!");
       res.redirect("/dashboard");
     } catch (err) {
       console.log(err);

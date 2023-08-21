@@ -38,7 +38,7 @@
 						  
 							<button id="addPatientBtn">Add Your Patient or Love One</button>							
 							<dialog id="addPatientDialog">
-								<form method="post" action="/add-patient">
+								<form method="POST" action="/post/createPost">
 								  <h3>Add Patient</h3>
 								  
 								  <label for="name">Name:</label>
@@ -66,7 +66,7 @@
 						<!-- Banner -->
 						<section id="tippity-top" class="cta">
 							<header>
-								<h2>Leo Lau</h2>
+								<h2><%= patient.name %></h2>
 								<p>Birthday</p>
 								<p>808-555-5555</p>
 								<p>Insurance #</p>
