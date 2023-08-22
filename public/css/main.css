@@ -3396,6 +3396,7 @@ input, select, textarea {
 			padding: 4em 0 2em 0 ;
 			border-top: solid 1px #434b55;
 			text-align: center;
+			margin-top: 100px;
 		}
 
 			#footer .copyright p {
@@ -3468,6 +3469,7 @@ input, select, textarea {
 
 				#footer .copyright {
 					padding: 3em 1.5em 1em 1.5em ;
+					margin-top: 60px;
 				}
 
 		}
