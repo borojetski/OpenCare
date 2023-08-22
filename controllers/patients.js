@@ -6,7 +6,7 @@ const { ObjectId } = require("mongodb")
 module.exports = {
   getDashboard: async (req, res) => {
     try {
-      const patients = await Patient.find({ user: req.user.id });
+      const patients = await Patient.find({ userIds: { $in: [req.user.id] } });
       res.render("dashboard.ejs", { patients: patients, user: req.user });
     } catch (err) {
       console.log(err);
@@ -81,9 +81,10 @@ module.exports = {
         name: req.body.name,
         bday: req.body.bday,
         phoneNbr: req.body.phoneNbr,
-        userId: req.user.id,
         insurNbr: req.body.insurNbr,
+        userIds: [req.user.id],
       });
+      await User.updateOne({ _id: req.user.id }, { $set: { hasPatientProfile: true } });
       console.log(req.body)
       console.log("Your patient or family member has been added!");
       res.redirect("/dashboard");

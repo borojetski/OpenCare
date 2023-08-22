@@ -18,10 +18,10 @@ const PatientSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: User
-  },
+  userIds: [{
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: User,
+  }]
 })
 
 module.exports = mongoose.model('Patient', PatientSchema)
