@@ -8,7 +8,6 @@ module.exports = {
     try {
       const patients = await Patient.find({ userIds: { $in: [req.user.id] } });
       const patient = patients[0];
-      console.log(patient)
       res.render("dashboard.ejs", { patients: patients, patient: patient, user: req.user });
     } catch (err) {
       console.log(err);

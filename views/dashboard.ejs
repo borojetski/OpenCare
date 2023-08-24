@@ -35,28 +35,10 @@
 							  <p>Create a profile for your patient or loved one.<br/>
 							  Once created, various fields will populate below.</p>
 							</header>
-						  
-							<button id="addPatientBtn">Add Your Patient or Love One</button>							
-							<dialog id="addPatientDialog">
-								<form method="POST" action="/patient/createPatient">
-								  <h3>Add Patient</h3>
-								  
-								  <label for="name">Name:</label>
-								  <input type="text" id="name" name="name">
-								  
-								  <label for="bday">Birthday:</label> 
-								  <input type="date" id="bday" name="bday">
-								  
-								  <label for="phoneNbr">Phone Number:</label> 
-								  <input type="tel" id="phoneNbr" name="phoneNbr">
-								  
-								  <label for="insurNbr">Insurance ID:</label> 
-								  <input type="text" id="insurNbr" name="insurNbr">
-									</br>
-								  <button type="submit">Submit</button>
-								  <button type="button" class="dialog-dismiss">Cancel</button>
-								</form>
-							  </dialog>
+						  <!-- Add new patient button -->
+							<button id="addPatientBtn" data-micromodal-trigger="addPatientModal">
+								Add Your Patient or Love One
+							</button>
 						</section>
 				
 						<!-- Banner -->
@@ -210,9 +192,44 @@
 
 			</div>
 
+<!-- Add new patient modal -->
+<div id="addPatientModal" aria-hidden="true">
+	<div tabindex="-1" data-micromodal-close>
+	  <div role="dialog" aria-modal="true" aria-labelledby="addPatientModalTitle">
+		<header>
+		  <h2 id="addPatientModalTitle">
+			Add Patient
+		  </h2>
+		  <button aria-label="Close modal" data-micromodal-close></button>
+		</header>
+		<div id="addPatientModalContent">
+		  <form method="POST" action="/patient/createPatient">
+		  
+			<label for="name">Name:</label>
+			<input type="text" id="name" name="name">
+			
+			<label for="bday">Birthday:</label>
+			<input type="date" id="bday" name="bday">
+			
+			<label for="phoneNbr">Phone Number:</label>
+			<input type="tel" id="phoneNbr" name="phoneNbr">
+			
+			<label for="insurNbr">Insurance ID:</label>
+			<input type="text" id="insurNbr" name="insurNbr">
+			
+			<button type="submit">Submit</button>
+			<button type="button" data-micromodal-close>Cancel</button>
+		  </form>
+		</div>
+	  </div>
+	</div>
+  </div>
+  
 <script>
     const userHPP = <%= user.hasPatientProfile %>;
 </script>
 <script src="/js/dashboard.js"></script>
+
+
 
 <%- include('partials/footer') -%>

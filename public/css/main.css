@@ -3487,7 +3487,7 @@ input, select, textarea {
 
 		}
 
-#addPatientDialog {
+/* #addPatientDialog {
   background: rgba(50, 56, 63, 1);
   width: 23em;
   
@@ -3495,7 +3495,7 @@ input, select, textarea {
     padding: 2.5em;
     width: 100%;
   }
-}
+} */
 
 .suggestions {
 	position: absolute;
