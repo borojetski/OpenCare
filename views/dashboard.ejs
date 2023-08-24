@@ -28,7 +28,7 @@
 					<div id="main">
 
 						<!-- Get Started -->
-						<section class="cta getStarted">
+						<section id="getStarted" class="cta">
 
 							<header>
 							  <h2>Welcome!</h2>
@@ -52,15 +52,15 @@
 								  
 								  <label for="insurNbr">Insurance ID:</label> 
 								  <input type="text" id="insurNbr" name="insurNbr">
-								  
+									</br>
 								  <button type="submit">Submit</button>
 								  <button type="button" class="dialog-dismiss">Cancel</button>
 								</form>
 							  </dialog>
-						</section>		  
+						</section>
 				
 						<!-- Banner -->
-						<section id="first" class="cta patientProfile">
+						<section id="first patientProfile" class="cta">
 							<header>
 								<% for (let i = 0; i < patients.length; i++) {%>
 								<h2><%= patients[i].name %></h2>
@@ -78,8 +78,82 @@
 							</div>
 						</section> -->
 
+						<!-- Medications -->
+							<section id="two patientProfile" class="spotlight">
+								<div class="image"><!-- <img src="images/pic01.jpg" alt="" /> --></div>
+								<div class="content">
+									<h2>Medications</h2>
+									<% for (let i = 0; i < patients.length; i++) {%>
+									<form method="POST" action="/patient/addMed/<%= patients[i]._id %>?_method=PUT">
+										<label for="medication-input">Add Medication:</label> 
+										<input name="newMed" type="text" id="medication-input">
+										<div id="suggestions"></div></br>
+										<button type="submit">Add</button>
+									  </form>
+									<section>
+										<h4>Routine</h4>
+										<div class="table-wrapper">
+											<table>
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Dosage</th>
+														<th>Notes</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Aspirin</td>
+														<td>50mg</td>
+														<td>2x Daily</td>
+													</tr>
+													<tr>
+														<td>Motrin</td>
+														<td>400mg</td>
+														<td>1x Daily</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td colspan="2"></td>
+														<td></td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+
+										<h4>PRN</h4>
+										<div class="table-wrapper">
+											<table class="alt">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>Description</th>
+														<th>Price</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Claritin</td>
+														<td>10ml</td>
+														<td>for 24hr period</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td colspan="2"></td>
+														<td></td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</section>
+								</div>
+								<% } %>
+							</section>
+
 						<!-- Temp -->
-							<section id="banner" class="patientProfile">
+							<section id="banner patientProfile">
 								<header>
 									<h2>Google Calendar</h2>
 									<p>Sed feugiat tempus sem amet imperdiet</p>
@@ -91,8 +165,8 @@
 								</footer> -->
 							</section>
 
-						<!-- One -->
-							<section id="one" class="features patientProfile">
+						<!-- Medications -->
+							<section id="one patientProfile" class="features">
 								<header class="major">
 									<h2>Medications</h2>
 									<p>Mauris lectus odio, mattis nec velit eu, luctus dictum diam. Quis<br />
@@ -117,16 +191,8 @@
 								</div>
 							</section>
 
-						<!-- Two -->
-							<section id="two" class="spotlight patientProfile">
-								<div class="image"><img src="images/pic01.jpg" alt="" /></div><div class="content">
-									<h2>Appointments</h2>
-									<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipa facilisis at, vestibulum id urna. Lorem ipsum dolor sit amet sollicitudin.</p>
-								</div>
-							</section>
-
 						<!-- Three -->
-							<section id="three" class="spotlight alt patientProfile">
+							<section id="three patientProfile" class="spotlight alt">
 								<div class="image"><img src="images/pic02.jpg" alt="" /></div><div class="content">
 									<h2>Shopping List</h2>
 									<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipa facilisis at, vestibulum id urna. Lorem ipsum dolor sit amet sollicitudin.</p>
@@ -134,7 +200,7 @@
 							</section>
 
 						<!-- Four -->
-							<section id="four" class="spotlight patientProfile">
+							<section id="four patientProfile" class="spotlight">
 								<div class="image"><img src="images/pic03.jpg" alt="" /></div><div class="content">
 									<h2>Porta vestibulum</h2>
 									<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate amet sem ut tempus. Donec quis ante viverra, suscipa facilisis at, vestibulum id urna. Lorem ipsum dolor sit amet sollicitudin.</p>

@@ -92,6 +92,18 @@ module.exports = {
       console.log(err);
     }
   },
+  addMed: async (req, res) => {
+    try {
+      // Add med to array
+      await Patient.findOneAndUpdate(
+        { _id: req.params.id }, 
+        { $push: { meds: req.body.newMed } } 
+      );
+      res.redirect("/dashboard");
+    } catch (err) {
+      res.redirect("/dashboard");
+    }
+  },
   editPatient: async (req, res) => {
     try {
       await Patient.findOneAndUpdate(

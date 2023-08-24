@@ -3496,3 +3496,10 @@ input, select, textarea {
     width: 100%;
   }
 }
+
+.suggestions {
+	position: absolute;
+	border: 1px solid #aaa;
+	background-color: #fff;
+	width: 100%;
+  }

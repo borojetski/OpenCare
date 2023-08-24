@@ -10,6 +10,8 @@ router.get("/:id", ensureAuth, patientsController.getPatient);
 
 router.post("/createPatient", patientsController.createPatient);
 
+router.put("/addMed/:id", patientsController.addMed);
+
 // router.put("/editPatient/:id", patientsController.editPatient);
 
 // router.delete("/deletePatient/:id", patientsController.deletePatient);
