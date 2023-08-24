@@ -7,11 +7,13 @@ module.exports = {
   getDashboard: async (req, res) => {
     try {
       const patients = await Patient.find({ userIds: { $in: [req.user.id] } });
-      res.render("dashboard.ejs", { patients: patients, user: req.user });
+      const patient = patients[0];
+      console.log(patient)
+      res.render("dashboard.ejs", { patients: patients, patient: patient, user: req.user });
     } catch (err) {
       console.log(err);
     }
-  },  
+  },
   // probably need to comment/delete the below section out
   getFeed: async (req, res) => {
     try {
@@ -94,10 +96,17 @@ module.exports = {
   },
   addMed: async (req, res) => {
     try {
-      // Add med to array
       await Patient.findOneAndUpdate(
-        { _id: req.params.id }, 
-        { $push: { meds: req.body.newMed } } 
+        { _id: req.params.id },
+        {
+          $push: {
+            meds: {
+              name: req.body.name, 
+              dosage: req.body.dosage,
+              notes: req.body.notes
+            }
+          }
+        }
       );
       res.redirect("/dashboard");
     } catch (err) {

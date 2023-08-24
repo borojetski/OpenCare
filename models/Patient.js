@@ -23,8 +23,14 @@ const PatientSchema = new mongoose.Schema({
     ref: User,
   }],
   meds: [{
-    type: [String],
-    required: false
+    type: [
+      {
+        name: String,
+        dosage: String,
+        notes: String  
+      }
+    ],
+    default: []
   }],
 })
 

@@ -84,72 +84,46 @@
 								<div class="content">
 									<h2>Medications</h2>
 									<% for (let i = 0; i < patients.length; i++) {%>
-									<form method="POST" action="/patient/addMed/<%= patients[i]._id %>?_method=PUT">
-										<label for="medication-input">Add Medication:</label> 
-										<input name="newMed" type="text" id="medication-input">
-										<div id="suggestions"></div></br>
-										<button type="submit">Add</button>
-									  </form>
+										<form method="POST" action="/patient/addMed/<%= patients[i]._id %>?_method=PUT">
+											<label for="name">Medication Name:</label>
+											<input name="name" type="text" id="name">
+											
+											<label for="dosage">Dosage:</label>
+											<input name="dosage" type="text" id="dosage">
+										  
+											<label for="notes">Notes:</label>
+											<input name="notes" type="text" id="notes">
+											</br>
+											<button type="submit">Add</button>
+										  </form>
+										  <% } %>
 									<section>
-										<h4>Routine</h4>
 										<div class="table-wrapper">
 											<table>
-												<thead>
-													<tr>
-														<th>Name</th>
-														<th>Dosage</th>
-														<th>Notes</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>Aspirin</td>
-														<td>50mg</td>
-														<td>2x Daily</td>
-													</tr>
-													<tr>
-														<td>Motrin</td>
-														<td>400mg</td>
-														<td>1x Daily</td>
-													</tr>
-												</tbody>
-												<tfoot>
-													<tr>
-														<td colspan="2"></td>
-														<td></td>
-													</tr>
-												</tfoot>
+											  <thead>
+												<tr>
+												  <th>Name</th>
+												  <th>Dosage</th>
+												  <th>Notes</th> 
+												</tr>
+											  </thead>
+											  <tbody>
+												<% for(let i = 0; i < patients.length; i++) { %>
+												  <% for(let j = 0; j < patients[i].meds.length; j++) { %>
+													<% for(let k = 0; k < patients[i].meds[j].length; k++) { %>
+													  <tr>
+														<td><%= patients[i].meds[j][k].name %></td>
+														<td><%= patients[i].meds[j][k].dosage %></td>
+														<td><%= patients[i].meds[j][k].notes %></td>
+													  </tr>
+													<% } %>
+												  <% } %>  
+												<% } %>
+											  </tbody>
 											</table>
-										</div>
-
-										<h4>PRN</h4>
-										<div class="table-wrapper">
-											<table class="alt">
-												<thead>
-													<tr>
-														<th>Name</th>
-														<th>Description</th>
-														<th>Price</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>Claritin</td>
-														<td>10ml</td>
-														<td>for 24hr period</td>
-													</tr>
-												</tbody>
-												<tfoot>
-													<tr>
-														<td colspan="2"></td>
-														<td></td>
-													</tr>
-												</tfoot>
-											</table>
-										</div>
+										  </div>
 									</section>
 								</div>
-								<% } %>
 							</section>
 
 						<!-- Temp -->
