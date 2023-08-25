@@ -1837,9 +1837,26 @@ input, select, textarea {
 		display: block; 
 	}
 
-	.modal.input {
+	.modal label {
+		margin-bottom: .25em;
+	}
+
+	.modal button {
+		margin-right: 1em;
+		width: 150px;
+	}
+
+		@media screen and (max-width: 736px) {
+
+			.modal button {
+				margin-bottom: 0.5em;
+			}
+		}
+
+	.modal input {
 		border: 1px solid #ccc;
 		border-radius: 4px;
+		margin-bottom: 2em;
 	}
 		
 		.modal input[type="text"], 
