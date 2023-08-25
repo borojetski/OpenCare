@@ -1832,9 +1832,20 @@ input, select, textarea {
 		border: 1px solid #aaa;
 		padding: 2.5em;
 	}
+
+	@media (max-width: 736px) {
+		.modal {
+			transform: translate(-50%, -50%) scale(.8);
+			width: 120%;
+		  }
+	}
 	
 	.modal.is-open {
 		display: block; 
+	}
+
+	.modal form {
+		margin-bottom: 0;
 	}
 
 	.modal label {
@@ -1847,7 +1858,6 @@ input, select, textarea {
 	}
 
 		@media screen and (max-width: 736px) {
-
 			.modal button {
 				margin-bottom: 0.5em;
 			}
@@ -1857,6 +1867,7 @@ input, select, textarea {
 		border: 1px solid #ccc;
 		border-radius: 4px;
 		margin-bottom: 2em;
+		width: 100%;
 	}
 		
 		.modal input[type="text"], 
@@ -1869,7 +1880,28 @@ input, select, textarea {
 			height: 3em;
 			padding: 0.5em;
 		}
+
+		@media screen and (max-width: 736px) {
+			.modal input {
+				margin-bottom: 1em;
+			}
+		}
 		
+		.modal img {
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: .5em;
+			margin: 0;
+			transform: scale(0.75);
+			}
+		
+		.modal img:hover {
+ 	 		background-color: rgba(255, 255, 255, 0.1);
+			color: #ffffff !important;
+			transition: all 0.2s;
+		}
+
 		.modal.input:focus {
 			outline: none;
 			border-color: #3d9970;
