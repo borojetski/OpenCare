@@ -4,9 +4,11 @@ document.getElementById('addPatientBtn').addEventListener('click', function() {
 });
 
 // Show/Hide Welcome Screen/Patient Profile
-const getStartedSections = document.querySelectorAll('#getStarted');
-const patientProfileSections = document.querySelectorAll('#patientProfile');
+const getStartedSections = document.querySelectorAll('[data-section="getStarted"]');
+const patientProfileSections = document.querySelectorAll('[data-section="patientProfile"]');
 
+console.log(getStartedSections);
+console.log(patientProfileSections);
 if (userHPP) {
     getStartedSections.forEach(section => {
     section.style.display = 'none'; 
