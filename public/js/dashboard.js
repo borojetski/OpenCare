@@ -1,17 +1,7 @@
-// Add New Patient Dialog & Cancel Button
-// const addPatientBtn = document.getElementById('addPatientBtn');
-// 	const addPatientDialog = document.getElementById('addPatientDialog');
-// 	addPatientBtn.addEventListener('click', () => {
-// 	addPatientDialog.showModal();
-// 	});
-	
-//   const cancelButton = document.querySelector('.dialog-dismiss');
-// 	cancelButton.addEventListener('click', () => {
-//   addPatientDialog.close();
-// });
-
-MicroModal.init(); 
-MicroModal.show('addPatientModal');
+MicroModal.init();
+document.getElementById('addPatientBtn').addEventListener('click', function() {
+    MicroModal.show('addPatientMModal');
+});
 
 // Show/Hide Welcome Screen/Patient Profile
 const getStartedSections = document.querySelectorAll('#getStarted');

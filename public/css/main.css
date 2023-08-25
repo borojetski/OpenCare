@@ -1818,6 +1818,46 @@ input, select, textarea {
 			padding: 0;
 		}
 
+/* Modal */
+
+	.modal {
+		display: none;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 80%;
+		max-width: 600px;
+		background: #32383f;
+		border: 1px solid #aaa;
+		padding: 2.5em;
+	}
+	
+	.modal.is-open {
+		display: block; 
+	}
+
+	.modal.input {
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+		
+		.modal input[type="text"], 
+		.modal input[type="password"],
+		.modal input[type="email"],
+		.modal input[type="tel"],
+		.modal input[type="date"] {
+			color: #32383f;
+			background-color: #ccc;
+			height: 3em;
+			padding: 0.5em;
+		}
+		
+		.modal.input:focus {
+			outline: none;
+			border-color: #3d9970;
+		}
+
 /* Button */
 
 	input[type="submit"],

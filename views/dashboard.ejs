@@ -36,12 +36,12 @@
 							  Once created, various fields will populate below.</p>
 							</header>
 						  <!-- Add new patient button -->
-							<button id="addPatientBtn" data-micromodal-trigger="addPatientModal">
-								Add Your Patient or Love One
+							<button id="addPatientBtn" data-micromodal-trigger="addPatientMModal">
+								Add a Patient or Love One
 							</button>
 						</section>
 				
-						<!-- Banner -->
+						<!-- Patient Info -->
 						<section id="first patientProfile" class="cta">
 							<header>
 								<% for (let i = 0; i < patients.length; i++) {%>
@@ -167,10 +167,10 @@
 
 				<!-- Footer -->
 					<section id="footer">
-						<!-- <div class="inner">
+						<div class="inner">
 							<section class="about">
-								<h3>Proin sed ultricies</h3>
-								<p>Praesent egestas quam at lorem imperdiet lobortis. Mauris condimentum et euismod ipsum, at ullamcorper libero dolor auctor sit amet. Proin vulputate.</p>
+								<h3>Disclaimer</h3>
+								<p>This app is meant to be a project I can showcase on my portfolio. It may appear to the general public as though it is a professional web app that abides by HIPAA and other state and federal regulations, of which there are probably many. Write a general disclaimer that states that this app does not abide by HIPAA and other state and federal regulations and has not been audited to verify privacy or security. Also, it is an open source project that anyone is welcome to copy or distribute as it abides by the GPL3.0 license. Make it clear that a user signing up to this site should not input any personal identifying information and though great effort has been taken to provide the privacy and security of the user and their respective patients, that the author can manke no guarentee. Feel free to contact me with any questions, concerns, or input.</p>
 								<ul class="actions">
 									<li><a href="#" class="button">Learn More</a></li>
 								</ul>
@@ -182,7 +182,7 @@
 									<li class="icon brands fa-twitter"><a href="#">@borojetski</a></li>
 								</ul>
 							</section>
-						</div> -->
+						</div>
 						<div class="copyright">
 							<a href="https://github.com/borojetski/OpenCare">
 								<p class="icon brands fa-github"> Created by Paul Borowiecki, licensed under GPL 3.0</p>
@@ -193,30 +193,30 @@
 			</div>
 
 <!-- Add new patient modal -->
-<div id="addPatientModal" aria-hidden="true">
+<div id="addPatientMModal" class="modal" aria-hidden="true">
 	<div tabindex="-1" data-micromodal-close>
 	  <div role="dialog" aria-modal="true" aria-labelledby="addPatientModalTitle">
 		<header>
 		  <h2 id="addPatientModalTitle">
 			Add Patient
 		  </h2>
-		  <button aria-label="Close modal" data-micromodal-close></button>
 		</header>
 		<div id="addPatientModalContent">
 		  <form method="POST" action="/patient/createPatient">
 		  
 			<label for="name">Name:</label>
 			<input type="text" id="name" name="name">
-			
+			</br>			
 			<label for="bday">Birthday:</label>
 			<input type="date" id="bday" name="bday">
-			
+			</br>			
+			</br>			
 			<label for="phoneNbr">Phone Number:</label>
 			<input type="tel" id="phoneNbr" name="phoneNbr">
-			
+			</br>			
 			<label for="insurNbr">Insurance ID:</label>
 			<input type="text" id="insurNbr" name="insurNbr">
-			
+		  	</br>
 			<button type="submit">Submit</button>
 			<button type="button" data-micromodal-close>Cancel</button>
 		  </form>
