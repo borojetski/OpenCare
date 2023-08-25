@@ -1831,6 +1831,7 @@ input, select, textarea {
 		background: #32383f;
 		border: 1px solid #aaa;
 		padding: 2.5em;
+		animation: mmfadeIn 0.3s ease-in-out;
 	}
 
 	@media (max-width: 736px) {
@@ -1842,6 +1843,24 @@ input, select, textarea {
 	
 	.modal.is-open {
 		display: block; 
+	}
+
+	@keyframes mmfadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+	
+	@keyframes mmfadeOut {
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
 	}
 
 	.modal form {

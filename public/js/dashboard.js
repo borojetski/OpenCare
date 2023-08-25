@@ -7,8 +7,6 @@ document.getElementById('addPatientBtn').addEventListener('click', function() {
 const getStartedSections = document.querySelectorAll('[data-section="getStarted"]');
 const patientProfileSections = document.querySelectorAll('[data-section="patientProfile"]');
 
-console.log(getStartedSections);
-console.log(patientProfileSections);
 if (userHPP) {
     getStartedSections.forEach(section => {
     section.style.display = 'none'; 
