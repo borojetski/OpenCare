@@ -77,13 +77,33 @@ module.exports = {
     }
   },
   createPatient: async (req, res) => {
+    const validationErrors = [];
+    if (!req.body.name) {
+      validationErrors.push({ msg: 'Name is required.' });
+    }
+    if (!req.body.bday) {
+      validationErrors.push({ msg: 'Birthday is required.' });
+    }
+    if (validationErrors.length > 0) {
+      return res.status(400).json({ errors: validationErrors });
+    }
+    const existingPatient = await Patient.findOne({
+      $and: [
+        { name: req.body.name },
+        { bday: req.body.bday }
+      ]
+    });
+    if (existingPatient) {
+      return res.status(400).json({ error: 'A patient with this name and birthday already exists.' });
+    }
     try {
+      const { name, bday, phoneNbr, insurNbr } = req.body;
       await Patient.create({
-        name: req.body.name,
-        bday: req.body.bday,
-        phoneNbr: req.body.phoneNbr,
-        insurNbr: req.body.insurNbr,
-        userIds: [req.user.id],
+        name,
+        bday,
+        phoneNbr,
+        insurNbr,
+        userIds: [req.user.id]
       });
       await User.updateOne({ _id: req.user.id }, { $set: { hasPatientProfile: true } });
       console.log(req.body)
@@ -91,6 +111,11 @@ module.exports = {
       res.redirect("/dashboard");
     } catch (err) {
       console.log(err);
+      if (err.name === 'ValidationError') {
+        res.status(400).json({ error: err.message });
+      } else {
+        res.status(500).json({ error: 'An error occurred' });
+      }
     }
   },
   addMed: async (req, res) => {

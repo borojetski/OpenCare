@@ -203,7 +203,8 @@
 		  </h2>
 		</header>
 		<div id="addPatientModalContent">
-		  <form method="POST" action="/patient/createPatient">
+		  <div id="error-messages"></div>
+  		  <form method="POST" action="/patient/createPatient">
 		  
 			<label for="name">Name:</label>
 			<input type="text" id="name" name="name">
