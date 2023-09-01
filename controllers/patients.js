@@ -13,15 +13,6 @@ module.exports = {
       console.log(err);
     }
   },
-  // probably need to comment/delete the below section out
-  getFeed: async (req, res) => {
-    try {
-      const patients = await Patient.find({ userId: req.user.id }).sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { patients: patients, user: req.user });
-    } catch (err) {
-      console.log(err);
-    }
-  },
   getPatient: async (req, res) => {
     try {
       const patient = await Patient.findById(req.params.id);
@@ -103,7 +94,8 @@ module.exports = {
         bday,
         phoneNbr,
         insurNbr,
-        userIds: [req.user.id]
+        userIds: [req.user.id],
+        cal: ""
       });
       await User.updateOne({ _id: req.user.id }, { $set: { hasPatientProfile: true } });
       console.log(req.body)
@@ -116,6 +108,15 @@ module.exports = {
       } else {
         res.status(500).json({ error: 'An error occurred' });
       }
+    }
+  },
+  addCal: async (req, res) => {
+    try {
+      await Patient.updateOne({ _id: req.params.id }, { $set: { cal: req.body.calInput } });
+      console.log("Calendar Updated")
+      res.redirect("/dashboard");
+    } catch (err) {
+      res.redirect("/dashboard");
     }
   },
   addMed: async (req, res) => {

@@ -22,6 +22,10 @@ const PatientSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId, 
     ref: User,
   }],
+  cal: {
+    type: String,
+    required: false
+  },
   meds: [{
     type: [
       {
