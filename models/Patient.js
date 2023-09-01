@@ -36,6 +36,11 @@ const PatientSchema = new mongoose.Schema({
     ],
     default: []
   }],
+  shopping: [{
+    type: String,
+    required: false,
+    default: [],
+}],
 })
 
 module.exports = mongoose.model('Patient', PatientSchema)

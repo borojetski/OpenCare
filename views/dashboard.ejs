@@ -173,6 +173,44 @@
 								</div>
 							</section>
 
+							<!-- Shopping List -->
+								<section id="shopping" class="spotlight" data-section="patientProfile">
+									<div class="image"><!-- <img src="images/pic01.jpg" alt="" /> --></div>
+									<div class="content">
+										<h2>Shopping List</h2>
+										<% for (let i = 0; i < patients.length; i++) {%>
+											<div class="accordion">
+												<button class="accordion-toggle">Add Item</button>
+												<div class="accordion-content">
+													<form method="POST" action="/patient/addShop/<%= patients[i]._id %>?_method=PUT">
+														<label for="shopName">Item Name:</label>
+														<input name="name" type="text" id="shopName">										
+														<button type="submit">Submit</button>
+													</form>
+												</div>
+											</div>
+										<% } %>
+										<section>
+											<div class="table-wrapper">
+												<table>
+												  <thead>
+													<tr>
+													  <th>Name</th>
+													</tr>
+												  </thead>
+												  <tbody>
+													<% for(let i = 0; i < patients.length; i++) { %>
+														<tr>
+														  <td><%= patients[i].shopping %></td>
+														</tr>
+													<% } %>
+												  </tbody>
+												</table>
+											  </div>
+										</section>
+									</div>
+								</section>
+
 						<!-- Temp -->
 							<!-- <section id="banner" data-section="patientProfile">
 								<header>

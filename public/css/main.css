@@ -1926,13 +1926,32 @@ input, select, textarea {
 			border-color: #3d9970;
 		}
 
+/* Accordion */
+
+	.accordion {
+		margin-bottom: 2em;
+	}
+
+	.accordion-content {
+		display: none;
+		padding: 10px;
+	}
+
+	.accordion button {
+		margin-top: 2em;
+	}
+
+	.accordion form {
+		margin: 1em 0;
+	}
+
 /* Button */
 
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
 	button,
-	.button {
+	.button, .accordion-toggle {
 		-moz-appearance: none;
 		-webkit-appearance: none;
 		-ms-appearance: none;

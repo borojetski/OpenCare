@@ -14,6 +14,8 @@ router.put("/addCal/:id", patientsController.addCal);
 
 router.put("/addMed/:id", patientsController.addMed);
 
+router.put("/addShop/:id", patientsController.addShop);
+
 // router.put("/editPatient/:id", patientsController.editPatient);
 
 // router.delete("/deletePatient/:id", patientsController.deletePatient);

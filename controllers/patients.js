@@ -131,8 +131,27 @@ module.exports = {
               notes: req.body.notes
             }
           }
-        }
+        },
+        { new: true },
       );
+      console.log("Medications Updated")
+      res.redirect("/dashboard");
+    } catch (err) {
+      res.redirect("/dashboard");
+    }
+  },
+  addShop: async (req, res) => {
+    try {
+      await Patient.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $push: {
+            shopping: req.body.name
+          }          
+        },
+        { new: true },
+      );
+      console.log("Shopping List Updated")
       res.redirect("/dashboard");
     } catch (err) {
       res.redirect("/dashboard");
