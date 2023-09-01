@@ -27,6 +27,8 @@
 				<!-- Main -->
 					<div id="main">
 
+						<% for (let i = 0; i < patients.length; i++) {%>
+
 						<!-- Get Started -->
 						<section class="cta" data-section="getStarted">
 
@@ -44,12 +46,10 @@
 						<!-- Patient Info -->
 						<section id="first" class="cta" data-section="patientProfile">
 							<header>
-								<% for (let i = 0; i < patients.length; i++) {%>
 								<h2><%= patients[i].name %></h2>
 								<p><%= patients[i].phoneNbr %></p>
 								<p>DOB: <%= patients[i].bday.toLocaleDateString('en-US', {timeZone: 'UTC', month: '2-digit', day: '2-digit', year: 'numeric'}) %></p>
 								<p>Insurance #<%= patients[i].insurNbr %></p>
-								<% } %>
 							</header>
 						</section>
 
@@ -59,13 +59,11 @@
 									<h2>Import Google Calendar</h2>
 									<p>Using the instructions below, import a read-only google calendar to view upcoming or past events.</p>
 									<p>Paste calendar iframe here:</p>
-									<% for (let i = 0; i < patients.length; i++) {%>
 									<form method="POST" action="/patient/addCal/<%= patients[i]._id %>?_method=PUT">
 										<label for="calInput">iframe key:</label>
 										<input name="calInput" type="text" id="calInput">
 										<button type="submit">Submit</button>
 									</form>
-									<% } %>
 								</header>
 								<div class="content">
 									<section class="feature">
@@ -104,19 +102,17 @@
 						<!-- Calendar -->
 						<section data-section="iframeCal">
 							<div class="content">
-								<% for (let i = 0; i < patients.length; i++) {%>
-									<div id="iframe"><%= patients[i].cal %></div>
+									<%= patients[i].cal %>
 										<div class="accordion">
 											<button class="accordion-toggle">Change Calendar</button>
 											<div class="accordion-content">
 												<form method="POST" action="/patient/addCal/<%= patients[i]._id %>?_method=PUT">
-													<label for="cal">New iframe Key:</label>
-													<input name="cal" type="text" id="cal">										
+													<label for="calInput">New iframe Key:</label>
+													<input name="calInput" type="text" id="calInput">										
 													<button type="submit">Submit</button>
 												</form>
 											</div>
 										</div>
-								<% } %>
 							</div>
 						</section>
 
@@ -125,7 +121,6 @@
 								<div class="image"><!-- <img src="images/pic01.jpg" alt="" /> --></div>
 								<div class="content">
 									<h2>Medications</h2>
-									<% for (let i = 0; i < patients.length; i++) {%>
 										<div class="accordion">
 											<button class="accordion-toggle">Add Medication</button>
 											<div class="accordion-content">
@@ -142,8 +137,7 @@
 													<button type="submit">Submit</button>
 												</form>
 											</div>
-										</div>
-									<% } %>						
+										</div>			
 									<section>
 										<div class="table-wrapper">
 											<table>
@@ -155,7 +149,6 @@
 												</tr>
 											  </thead>
 											  <tbody>
-												<% for(let i = 0; i < patients.length; i++) { %>
 												  <% for(let j = 0; j < patients[i].meds.length; j++) { %>
 													<% for(let k = 0; k < patients[i].meds[j].length; k++) { %>
 													  <tr>
@@ -165,7 +158,6 @@
 													  </tr>
 													<% } %>
 												  <% } %>  
-												<% } %>
 											  </tbody>
 											</table>
 										  </div>
@@ -178,7 +170,6 @@
 									<div class="image"><!-- <img src="images/pic01.jpg" alt="" /> --></div>
 									<div class="content">
 										<h2>Shopping List</h2>
-										<% for (let i = 0; i < patients.length; i++) {%>
 											<div class="accordion">
 												<button class="accordion-toggle">Add Item</button>
 												<div class="accordion-content">
@@ -189,7 +180,6 @@
 													</form>
 												</div>
 											</div>
-										<% } %>
 										<section>
 											<div class="table-wrapper">
 												<table>
@@ -199,12 +189,12 @@
 													</tr>
 												  </thead>
 												  <tbody>
-													<% for(let i = 0; i < patients.length; i++) { %>
+													  <% for(let j = 0; j < patients[i].shopping.length; j++) { %>
 														<tr>
-														  <td><%= patients[i].shopping %></td>
+														  <td><%= patients[i].shopping[j] %></td>
 														</tr>
-													<% } %>
-												  </tbody>
+													  <% } %>
+												  </tbody>												  
 												</table>
 											  </div>
 										</section>
@@ -302,12 +292,13 @@
 	  </div>
 	</div>
   </div>
-  
+
 <script>
     const userHPP = <%= user.hasPatientProfile %>;
+	const ptHCal = '<%= patients[i].cal %>';
 </script>
 <script src="/js/dashboard.js"></script>
 
-
+<% } %>
 
 <%- include('partials/footer') -%>

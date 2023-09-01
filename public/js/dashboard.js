@@ -3,6 +3,18 @@ document.getElementById('addPatientBtn').addEventListener('click', function() {
     MicroModal.show('addPatientMModal');
 });
 
+// Accordion Button
+const accordions = document.querySelectorAll('.accordion');
+accordions.forEach(accordion => {
+    const toggleButton = accordion.querySelector('.accordion-toggle');
+    const content = accordion.querySelector('.accordion-content');
+    toggleButton.addEventListener('click', () => {
+        const computedStyle = window.getComputedStyle(content);
+        const displayValue = computedStyle.getPropertyValue('display');
+        content.style.display = displayValue === 'none' ? 'block' : 'none';
+    });
+});
+
 // Show/Hide Welcome Screen/Patient Profile
 const getStartedSections = document.querySelectorAll('[data-section="getStarted"]');
 const patientProfileSections = document.querySelectorAll('[data-section="patientProfile"]');
@@ -20,6 +32,25 @@ if (userHPP) {
     });
     patientProfileSections.forEach(section => {
     section.style.display = 'none';
+    });
+}
+
+// Show/Hide Calendar Import
+const setCalSections = document.querySelectorAll('[data-section="setCal"]');
+const iframeCalSections = document.querySelectorAll('[data-section="iframeCal"]');
+if (ptHCal === '') {
+    setCalSections.forEach(section => {
+        section.style.display = 'block';
+    });
+    iframeCalSections.forEach(section => {
+        section.style.display = 'none'; 
+    });
+} else {
+    setCalSections.forEach(section => {
+        section.style.display = 'none';
+    });
+    iframeCalSections.forEach(section => {
+        section.style.display = 'block';
     });
 }
 
@@ -50,15 +81,3 @@ function handleFormSubmission(event) {
       console.error('An error occurred:', error);
     });
 }
-
-// Accordion Button
-const accordions = document.querySelectorAll('.accordion');
-accordions.forEach(accordion => {
-    const toggleButton = accordion.querySelector('.accordion-toggle');
-    const content = accordion.querySelector('.accordion-content');
-    toggleButton.addEventListener('click', () => {
-        const computedStyle = window.getComputedStyle(content);
-        const displayValue = computedStyle.getPropertyValue('display');
-        content.style.display = displayValue === 'none' ? 'block' : 'none';
-    });
-});
