@@ -1945,6 +1945,10 @@ input, select, textarea {
 		margin: 1em 0;
 	}
 
+	.centerButt {
+		text-align: center;
+	}
+
 /* Button */
 
 	input[type="submit"],
@@ -2082,6 +2086,10 @@ input, select, textarea {
 				line-height: 4.35em;
 			}
 
+		}
+
+		#one button {
+			margin-top: 2em;
 		}
 
 /* Form */

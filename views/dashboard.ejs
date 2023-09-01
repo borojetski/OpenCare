@@ -57,8 +57,8 @@
 							<section id="one" class="features" data-section="setCal">
 								<header class="major">
 									<h2>Import Google Calendar</h2>
-									<p>Using the instructions below, import a read-only google calendar to view upcoming or past events.</p>
-									<p>Paste calendar iframe here:</p>
+									<p>Using the instructions below, import a read-only google calendar to view upcoming or past events.</br>
+									Paste calendar iframe here:</p>
 									<form method="POST" action="/patient/addCal/<%= patients[i]._id %>?_method=PUT">
 										<label for="calInput">iframe key:</label>
 										<input name="calInput" type="text" id="calInput">
@@ -102,17 +102,17 @@
 						<!-- Calendar -->
 						<section data-section="iframeCal">
 							<div class="content">
-									<%= patients[i].cal %>
-										<div class="accordion">
-											<button class="accordion-toggle">Change Calendar</button>
-											<div class="accordion-content">
-												<form method="POST" action="/patient/addCal/<%= patients[i]._id %>?_method=PUT">
-													<label for="calInput">New iframe Key:</label>
-													<input name="calInput" type="text" id="calInput">										
-													<button type="submit">Submit</button>
-												</form>
-											</div>
-										</div>
+								<%= patients[i].cal %>
+								<div class="accordion centerButt">
+									<button class="accordion-toggle">Change Calendar</button>
+									<div class="accordion-content">
+										<form method="POST" action="/patient/addCal/<%= patients[i]._id %>?_method=PUT">
+											<label for="calInput">New iframe Key:</label>
+											<input name="calInput" type="text" id="calInput">										
+											<button type="submit">Submit</button>
+										</form>
+									</div>
+								</div>
 							</div>
 						</section>
 
