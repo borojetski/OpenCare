@@ -27,12 +27,13 @@ module.exports = {
       }
       const patients = await Patient.find({ userIds: { $in: [req.user.id] } });
       const patient = patients[0];
-      res.render("profile", { patients: patients, patient: patient, user: req.user });
+      const birthday = patient.bday.toISOString().split('T')[0];
+      res.render("profile", { patients: patients, patient: patient, birthday: birthday, user: req.user });
     } catch (error) {
       console.error(error);
       return res.render("error", { error: error.message });
     }
-  },  
+  },
   getPatient: async (req, res) => {
     try {
       const patient = await Patient.findById(req.params.id);
