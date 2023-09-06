@@ -30,7 +30,7 @@
 								<h2>Edit User Profile</h2>
 							</header>
 							<div class="content">
-								<form action="/editUser/<%= user._id %>?_method=PUT" method="POST">
+								<form action="/patient/editUser/<%= user._id %>?_method=PUT" method="POST">
 									<div>
 										<label for="editUserName">Edit Username:</label>
 										<input type="text" id="editUserName" name="userName" value="<%= user.userName %>">
@@ -55,7 +55,7 @@
 								<h2>Edit Patient Profile</h2>
 							</header>
 							<div class="content">
-								<form action="/editPatient/<%= patients[i]._id %>?_method=PUT" method="POST">
+								<form action="/patient/editPatient/<%= patients[i]._id %>?_method=PUT" method="POST">
 									<div>
 										<label for="editName">Edit Name:</label>
 										<input type="text" id="editName" name="name" value="<%= patients[i].name %>">
@@ -80,6 +80,18 @@
 									<button type="submit" class="button primary">Submit</button>
 								</form>
 							</div>
+						</section>
+						
+						<hr/>
+						<section id="content" class="default">
+							<header class="major">
+								<h2>Advanced Options</h2>
+							</header>
+							<br/>
+							<form action="/patient/getCsv/<%= user._id %>" method="GET">
+								<button type="submit" class="button primary">Download Friend List</button>
+							  </form>
+							<hr/>
 						</section>
 					</div>
 					<% } %>

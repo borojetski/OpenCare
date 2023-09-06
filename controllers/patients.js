@@ -1,6 +1,6 @@
 const Patient = require("../models/Patient");
 const User = require("../models/User");
-// const fs = require('fs');
+const fs = require('fs');
 const { ObjectId } = require("mongodb")
 
 module.exports = {
@@ -44,32 +44,25 @@ module.exports = {
   },
   getCsv: async (req, res) => {
     try {
-      const people = await Patient.find({ userId: req.params.id });
-      
-      // csvData will be an array of strings representing the User object and the people objects; each CSV string in the array represents one row in the final file
-      const fields = ['name', 'birthday', 'relation', 'gifts'];
+      const people = await Patient.find({ userIds: req.params.id });
+      const fields = ['name', 'birthday', 'phoneNbr', 'insurNbr', 'meds', 'shopping'];
       const csvData = [];
-
-      // add header row to the csvData array
-      csvData.push(fields.join(','));
-
-      // add each person's data as a new row in the csvData array
-      people.forEach((item) => {
-        const rowData = fields.map((field) => {
+      for (const field of fields) {
+        people.forEach((item) => {
           if (field === 'birthday') {
-            return dayjs(item[field]).format('YYYY-MM-DD');
+            const birthday = new Date(item['birthday']);
+            const formattedBirthday = `${birthday.getMonth() + 1}/${birthday.getDate()}/${birthday.getFullYear()}`;
+            csvData.push({ field: 'birthday', value: formattedBirthday });
+          } else {
+            csvData.push({ field: field, value: item[field] });
           }
-          return item[field];
         });
-    
-        csvData.push(rowData.join(','));
-      });
-
-      // download file name
-      const fileName = "friend-list-db.csv";
-
-      // fs method that writes data to file
-      fs.writeFileSync(fileName, csvData.join('\n'));
+      }
+      
+      const fileName = "patient-data.csv";
+      const csvContent = csvData.map((row) => `${row.field}: ${row.value}`).join('\n');
+  
+      fs.writeFileSync(fileName, csvContent);
 
       // sets the response headers for the download
       res.setHeader('Content-Type', 'text/csv'); // informs browser of file type
