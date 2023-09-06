@@ -25,8 +25,9 @@ module.exports = {
       if (!user) { 
         return res.status(401).render("401");
       }
-      const patient = await Patient.findOne({ userId: req.user.id });
-      res.render("profile", { user, patient });
+      const patients = await Patient.find({ userIds: { $in: [req.user.id] } });
+      const patient = patients[0];
+      res.render("profile", { patients: patients, patient: patient, user: req.user });
     } catch (error) {
       console.error(error);
       return res.render("error", { error: error.message });
@@ -187,9 +188,9 @@ module.exports = {
       }
       await user.save();
       req.flash("success", { msg: "Profile updated successfully!" });
-      res.redirect("/dashboard");
+      res.redirect("/profile");
     } catch (err) {
-      return next(err); 
+      console.log(err);
     }
   },
   editPatient: async (req, res) => {
@@ -197,11 +198,17 @@ module.exports = {
       await Patient.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $set: {name : req.body.name, birthday : req.body.birthday, gifts : req.body.gifts},
+          $set: {
+            name : req.body.name,
+            bday : req.body.bday,
+            phoneNbr : req.body.phoneNbr,
+            insurNbr : req.body.insurNbr,
+            cal : req.body.cal,
+          },
         }
       );
       console.log("Patient Updated");
-      res.redirect("/dashboard");
+      res.redirect("/profile");
     } catch (err) {
       console.log(err);
     }

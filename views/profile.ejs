@@ -16,8 +16,8 @@
 						<div class="inner">
 							<h2>Menu</h2>
 							<ul class="links">
-								<li><a href="/">Home</a></li>
 								<li><a href="/dashboard">Dashboard</a></li>
+								<li><a href="/">Home</a></li>
 								<li><a href="/logout">Sign Out</a></li>
 							</ul>
 						</div>
@@ -33,15 +33,48 @@
 								<form action="/editUser/<%= user._id %>?_method=PUT" method="POST">
 									<div>
 										<label for="editUserName">Edit Username:</label>
-										<input type="text" id="editUserName" name="userName" value="<%= user.userName %>"/>
+										<input type="text" id="editUserName" name="userName" value="<%= user.userName %>">
 									</div>
 									<div>
 										<label for="editEmail">Edit Email:</label>
-										<input type="email" id="editEmail" name="email" value="<%= user.email %>"/>
+										<input type="email" id="editEmail" name="email" value="<%= user.email %>">
 									</div>
 									<div>
 										<label for="editPassword">Edit Password:</label>
-										<input type="password" id="editPassword" name="password" value="<%= user.password %>"/>
+										<input type="password" id="editPassword" name="password" value="<%= user.password %>">
+									</div>
+									</br>
+									<button type="submit" class="button primary">Submit</button>
+								</form>
+							</div>
+						</section>
+						
+						<% for (let i = 0; i < patients.length; i++) {%>
+						<section id="content" class="default">
+							<header class="major">
+								<h2>Edit Patient Profile</h2>
+							</header>
+							<div class="content">
+								<form action="/editPatient/<%= patients[i]._id %>?_method=PUT" method="POST">
+									<div>
+										<label for="editName">Edit Name:</label>
+										<input type="text" id="editName" name="name" value="<%= patients[i].name %>">
+									</div>
+									<div>
+										<label for="editBday">Edit Birthday:</label>
+										<input type="date" id="editBday" name="bday" value="<%= patients[i].bday %>">
+									</div>
+									<div>
+										<label for="editPhone">Edit Phone Number:</label>
+										<input type="tel" id="editPhone" name="phoneNbr" value="<%= patients[i].phoneNbr %>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+									</div>
+									<div>
+										<label for="editInsur">Edit Insurance Number:</label>
+										<input type="text" id="editInsur" name="insurNbr" value="<%= patients[i].insurNbr %>">
+									</div>
+									<div>
+										<label for="editCalKey">Edit Calendar Key Number:</label>
+										<input type="text" id="editCalKey" name="cal" value="<%= patients[i].cal %>">
 									</div>
 									</br>
 									<button type="submit" class="button primary">Submit</button>
@@ -49,6 +82,7 @@
 							</div>
 						</section>
 					</div>
+					<% } %>
 
 				<!-- Footer -->
 					<section id="footer">

@@ -17,7 +17,6 @@
 							<ul class="links">
 								<li><a href="/">Home</a></li>
 								<li><a href="/profile">Edit Profile</a></li>
-								<li><a href="#">Patient Profile</a></li>
 								<li><a href="/about">About</a></li>
 								<li><a href="/logout">Log Out</a></li>
 							</ul>
@@ -26,8 +25,6 @@
 				
 				<!-- Main -->
 					<div id="main">
-
-						<% for (let i = 0; i < patients.length; i++) {%>
 
 						<!-- Get Started -->
 						<section class="cta" data-section="getStarted">
@@ -42,6 +39,42 @@
 								Add a Patient or Love One
 							</button>
 						</section>
+
+							<!-- Add new patient modal -->
+							<div id="addPatientMModal" class="modal" aria-hidden="true">
+								<div tabindex="-1" data-micromodal-close>
+								<div role="dialog" aria-modal="true" aria-labelledby="addPatientModalTitle">
+									<header>
+									<img id="modal-close-button" data-micromodal-close src="/css/images/close.svg" alt="Close modal"/>
+									<h2 id="addPatientModalTitle">
+										Add Patient
+									</h2>
+									</header>
+									<div id="addPatientModalContent">
+									<div id="error-messages"></div>
+										<form method="POST" action="/patient/createPatient">
+									
+										<label for="name">Name:</label>
+										<input type="text" id="name" name="name">
+										
+										<label for="bday">Birthday:</label>
+										<input type="date" id="bday" name="bday">
+										
+										<label for="phoneNbr">Phone Number:</label>
+										<input type="tel" id="phoneNbr" name="phoneNbr" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+										
+										<label for="insurNbr">Insurance ID:</label>
+										<input type="text" id="insurNbr" name="insurNbr">
+										
+										<button type="submit">Submit</button>
+										<button type="button" data-micromodal-close>Cancel</button>
+									</form>
+									</div>
+								</div>
+								</div>
+							</div>
+
+						<% for (let i = 0; i < patients.length; i++) {%>
 				
 						<!-- Patient Info -->
 						<section id="first" class="cta" data-section="patientProfile">
@@ -259,46 +292,11 @@
 
 			</div>
 
-<!-- Add new patient modal -->
-<div id="addPatientMModal" class="modal" aria-hidden="true">
-	<div tabindex="-1" data-micromodal-close>
-	  <div role="dialog" aria-modal="true" aria-labelledby="addPatientModalTitle">
-		<header>
-		  <img id="modal-close-button" data-micromodal-close src="/css/images/close.svg" alt="Close modal"/>
-		  <h2 id="addPatientModalTitle">
-			Add Patient
-		  </h2>
-		</header>
-		<div id="addPatientModalContent">
-		  <div id="error-messages"></div>
-  		  <form method="POST" action="/patient/createPatient">
-		  
-			<label for="name">Name:</label>
-			<input type="text" id="name" name="name">
-			
-			<label for="bday">Birthday:</label>
-			<input type="date" id="bday" name="bday">
-			
-			<label for="phoneNbr">Phone Number:</label>
-			<input type="tel" id="phoneNbr" name="phoneNbr">
-			
-			<label for="insurNbr">Insurance ID:</label>
-			<input type="text" id="insurNbr" name="insurNbr">
-			
-			<button type="submit">Submit</button>
-			<button type="button" data-micromodal-close>Cancel</button>
-		  </form>
-		</div>
-	  </div>
-	</div>
-  </div>
-
 <script>
     const userHPP = <%= user.hasPatientProfile %>;
 	const ptHCal = '<%= patients[i].cal %>';
 </script>
-<script src="/js/dashboard.js"></script>
-
 <% } %>
+<script src="/js/dashboard.js"></script>
 
 <%- include('partials/footer') -%>

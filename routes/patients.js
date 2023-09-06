@@ -8,7 +8,6 @@ router.post("/createPatient", patientsController.createPatient);
 router.put("/addCal/:id", patientsController.addCal);
 router.put("/addMed/:id", patientsController.addMed);
 router.put("/addShop/:id", patientsController.addShop);
-router.put("/editUser/:id", patientsController.editUser);
 
 module.exports = router;
 

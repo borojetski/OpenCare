@@ -18,5 +18,7 @@ router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.patientSignup);
 router.put("/updateDashboard/:id", authController.updateDashboard);
+router.put("/editUser/:id", patientsController.editUser);
+router.put("/editPatient/:id", patientsController.editPatient);
 
 module.exports = router;
