@@ -3,24 +3,12 @@ const router = express.Router();
 const patientsController = require("../controllers/patients");
 const { ensureAuth } = require("../middleware/auth");
 
-//Patient Routes - simplified for now
-router.get("/:id", ensureAuth, patientsController.getPatient);
-
-// router.get("/getCsv/:id", patientsController.getCsv);
-
+router.get("/profile", ensureAuth, patientsController.getProfile);
 router.post("/createPatient", patientsController.createPatient);
-
 router.put("/addCal/:id", patientsController.addCal);
-
 router.put("/addMed/:id", patientsController.addMed);
-
 router.put("/addShop/:id", patientsController.addShop);
-
-// router.put("/editPatient/:id", patientsController.editPatient);
-
-// router.delete("/deletePatient/:id", patientsController.deletePatient);
-
-// router.delete("/deleteAcct/:id", patientsController.deleteAcct);
+router.put("/editUser/:id", patientsController.editUser);
 
 module.exports = router;
 

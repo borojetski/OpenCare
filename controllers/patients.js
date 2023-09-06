@@ -5,6 +5,9 @@ const { ObjectId } = require("mongodb")
 
 module.exports = {
   getDashboard: async (req, res) => {
+    if (!req.user) {
+      return res.redirect("/login");
+    }
     try {
       const patients = await Patient.find({ userIds: { $in: [req.user.id] } });
       const patient = patients[0];
@@ -13,6 +16,22 @@ module.exports = {
       console.log(err);
     }
   },
+  getProfile: async (req, res) => {
+    if (!req.user) {
+      return res.redirect("/login");
+    }
+    try {
+      const user = await User.findById(req.user.id);
+      if (!user) { 
+        return res.status(401).render("401");
+      }
+      const patient = await Patient.findOne({ userId: req.user.id });
+      res.render("profile", { user, patient });
+    } catch (error) {
+      console.error(error);
+      return res.render("error", { error: error.message });
+    }
+  },  
   getPatient: async (req, res) => {
     try {
       const patient = await Patient.findById(req.params.id);
@@ -155,6 +174,22 @@ module.exports = {
       res.redirect("/dashboard");
     } catch (err) {
       res.redirect("/dashboard");
+    }
+  },
+  editUser: async (req, res) => {
+    const userId = req.params.id;
+    try {
+      const user = await User.findById(userId);
+      user.userName = req.body.userName;
+      user.email = req.body.email;
+      if (req.body.password) {
+        user.password = req.body.password;
+      }
+      await user.save();
+      req.flash("success", { msg: "Profile updated successfully!" });
+      res.redirect("/dashboard");
+    } catch (err) {
+      return next(err); 
     }
   },
   editPatient: async (req, res) => {
