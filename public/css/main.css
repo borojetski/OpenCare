@@ -3638,3 +3638,35 @@ input, select, textarea {
 	background-color: #fff;
 	width: 100%;
   }
+
+  #csvdiv {
+	padding-top: 3.5em;
+  }
+
+  .editprof label, .acclist label, .acclist th, .acclist td, .acclist h2 {
+	  text-align: left;
+  }
+
+  .editprof label {
+	margin-bottom: .25em;
+  }
+
+  .editprof input {
+	  border: .5px solid #656464;
+	  border-radius: 4px;
+	  margin-bottom: 2em;
+	  height: 2.75em;
+	  width: 100%;
+  }
+
+  .editprof .accordion-content {
+	padding: 1.5em 0;
+  }
+
+  .editprof p {
+	margin-bottom: .5em;
+  }
+
+  #editBday {
+	background-color: #383F47;
+  }

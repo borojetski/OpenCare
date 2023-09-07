@@ -29,7 +29,7 @@
 							<header class="major">
 								<h2>Edit User Profile</h2>
 							</header>
-							<div class="content">
+							<div class="content editprof centerButt">
 								<form action="/patient/editUser/<%= user._id %>?_method=PUT" method="POST">
 									<div>
 										<label for="editUserName">Edit Username:</label>
@@ -54,7 +54,7 @@
 							<header class="major">
 								<h2>Edit Patient Profile</h2>
 							</header>
-							<div class="content">
+							<div class="content editprof centerButt">
 								<form action="/patient/editPatient/<%= patients[i]._id %>?_method=PUT" method="POST">
 									<div>
 										<label for="editName">Edit Name:</label>
@@ -81,7 +81,7 @@
 								</form>
 								<hr/>
 	
-								<div class="accordion">
+								<div class="accordion centerButt">
 									<button class="accordion-toggle">Delete Patient</button>
 									<div class="accordion-content">
 										<p>Proceeding will remove access to this patient. If your patient has no other associated users, they will be permanently deleted from the database.</p>
@@ -100,24 +100,22 @@
 							<header class="major">
 								<h2>Advanced Options</h2>
 							</header>
-							<br/>
-
-							<form class="centerButt" action="/patient/getCsv/<%= user._id %>" method="GET">
-								<button type="submit" class="button primary">Download Patient Data</button>
-							</form>
-							<hr/>
-
-							<div class="accordion centerButt">
-								<button class="accordion-toggle">Delete Account</button>
-								<div class="accordion-content">
-									<p>Proceeding will delete your user account and remove access to any associated patients in the database. If your patient has no other associated users, they will also be permanently deleted from the database.</p>
-									<h4>This action cannot be undone.</h4>
-									<form action="/patient/deleteAcct/<%= user._id %>?_method=DELETE" method="POST">
-										<button type="submit">Yes, delete my account</button>
-									</form>
+							<div id="csvdiv" class="content editprof centerButt">
+								<form action="/patient/getCsv/<%= user._id %>" method="GET">
+									<button type="submit" class="primary">Download Patient Data</button>
+								</form>
+								<hr/>
+								<div class="accordion centerButt">
+									<button class="accordion-toggle">Delete Account</button>
+									<div class="accordion-content">
+										<p>Proceeding will delete your user account and remove access to any associated patients in the database. If your patient has no other associated users, they will also be permanently deleted from the database.</p>
+										<h4>This action cannot be undone.</h4>
+										<form action="/patient/deleteAcct/<%= user._id %>?_method=DELETE" method="POST">
+											<button type="submit">Yes, delete my account</button>
+										</form>
+									</div>
 								</div>
-							</div>
-							
+							</div>							
 						</section>
 					</div>
 					<% } %>
