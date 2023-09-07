@@ -79,6 +79,19 @@
 									</br>
 									<button type="submit" class="button primary">Submit</button>
 								</form>
+								<hr/>
+	
+								<div class="accordion">
+									<button class="accordion-toggle">Delete Patient</button>
+									<div class="accordion-content">
+										<p>Proceeding will remove access to this patient. If your patient has no other associated users, they will be permanently deleted from the database.</p>
+										<h4>This action cannot be undone.</h4>
+										<form action="/patient/deletePatient/<%= user._id %>?_method=DELETE" method="POST">
+											<button type="submit">Yes, delete this patient</button>
+										</form>
+									</div>
+								</div>
+
 							</div>
 						</section>
 						
@@ -91,7 +104,7 @@
 
 							<form class="centerButt" action="/patient/getCsv/<%= user._id %>" method="GET">
 								<button type="submit" class="button primary">Download Patient Data</button>
-							  </form>
+							</form>
 							<hr/>
 
 							<div class="accordion centerButt">
@@ -99,7 +112,7 @@
 								<div class="accordion-content">
 									<p>Proceeding will delete your user account and remove access to any associated patients in the database. If your patient has no other associated users, they will also be permanently deleted from the database.</p>
 									<h4>This action cannot be undone.</h4>
-									<form action="/patient/deleteAcct/<%= user._id %>?_method=DELETE" method="POST">		
+									<form action="/patient/deleteAcct/<%= user._id %>?_method=DELETE" method="POST">
 										<button type="submit">Yes, delete my account</button>
 									</form>
 								</div>
