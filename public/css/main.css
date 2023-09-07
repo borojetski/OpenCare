@@ -1933,8 +1933,10 @@ input, select, textarea {
 	}
 
 	.accordion-content {
-		display: none;
-		padding: 10px;
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height .3s ease-out;
+		padding: 0 10px;
 	}
 
 	.accordion button {
@@ -3664,6 +3666,7 @@ input, select, textarea {
   }
 
   .editprof p {
+	margin-top: 2em;
 	margin-bottom: .5em;
   }
 

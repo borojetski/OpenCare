@@ -9,8 +9,10 @@ accordions.forEach(accordion => {
     const toggleButton = accordion.querySelector('.accordion-toggle');
     const content = accordion.querySelector('.accordion-content');
     toggleButton.addEventListener('click', () => {
-        const computedStyle = window.getComputedStyle(content);
-        const displayValue = computedStyle.getPropertyValue('display');
-        content.style.display = displayValue === 'none' ? 'block' : 'none';
+        if(content.style.maxHeight){
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        } 
     });
 });
