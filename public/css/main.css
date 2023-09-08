@@ -2088,11 +2088,15 @@ input, select, textarea {
 				line-height: 4.35em;
 			}
 
-		}
+		} 
 
 		#one button {
 			margin-top: 2em;
 		}
+
+		#danger {
+			background-color: rgb(71, 44, 44);
+		} 
 
 /* Form */
 
@@ -2177,8 +2181,12 @@ input, select, textarea {
 		height: 3.25em;
 	}
 
-	textarea {
+	textarea{
 		padding: 1em 1.5em;
+	}
+
+	#editBday {
+		padding-left: 1em;
 	}
 
 	input[type="checkbox"],
@@ -2635,6 +2643,30 @@ input, select, textarea {
 		background-image: url("images/overlay.png"), url("images/header-bg.svg"), -webkit-linear-gradient(45deg, #c4918a 20%, #6093c4 80%);
 		background-image: url("images/overlay.png"), url("images/header-bg.svg"), -ms-linear-gradient(45deg, #c4918a 20%, #6093c4 80%);
 		background-image: url("images/overlay.png"), url("images/header-bg.svg"), linear-gradient(45deg, #c4918a 20%, #6093c4 80%);
+		background-size: 100px 100px, cover, cover;
+		background-position: center, center, center;
+	}
+
+	header.major2 {
+		padding: 6.5em 3em 4.5em 3em ;
+		text-align: center;
+		background-color: #c4918a;
+		background-image: url("images/overlay.png"), url("images/header-bg.svg"), -moz-linear-gradient(45deg, #858fc9 20%, #61c095 80%);
+		background-image: url("images/overlay.png"), url("images/header-bg.svg"), -webkit-linear-gradient(45deg, #858fc9 20%, #61c095 80%);
+		background-image: url("images/overlay.png"), url("images/header-bg.svg"), -ms-linear-gradient(45deg, #858fc9 20%, #61c095 80%);
+		background-image: url("images/overlay.png"), url("images/header-bg.svg"), linear-gradient(45deg, #858fc9 20%, #61c095 80%);
+		background-size: 100px 100px, cover, cover;
+		background-position: center, center, center;
+	}
+
+	header.major3 {
+		padding: 6.5em 3em 4.5em 3em ;
+		text-align: center;
+		background-color: #c4918a;
+		background-image: url("images/overlay.png"), url("images/header-bg.svg"), -moz-linear-gradient(45deg, #8ac48f 20%, #e4984e 90%);
+		background-image: url("images/overlay.png"), url("images/header-bg.svg"), -webkit-linear-gradient(45deg, #8ac48f 20%, #e4984e 90%);
+		background-image: url("images/overlay.png"), url("images/header-bg.svg"), -ms-linear-gradient(45deg, #8ac48f 20%, #e4984e 90%);
+		background-image: url("images/overlay.png"), url("images/header-bg.svg"), linear-gradient(45deg, #8ac48f 20%, #e4984e 90%);
 		background-size: 100px 100px, cover, cover;
 		background-position: center, center, center;
 	}

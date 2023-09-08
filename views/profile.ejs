@@ -51,7 +51,7 @@
 						
 						<% for (let i = 0; i < patients.length; i++) {%>
 						<section id="content" class="default">
-							<header class="major">
+							<header class="major major2">
 								<h2>Edit Patient Profile</h2>
 							</header>
 							<div class="content editprof centerButt">
@@ -87,7 +87,7 @@
 										<p>Proceeding will remove access to this patient. If your patient has no other associated users, they will be permanently deleted from the database.</p>
 										<h4>This action cannot be undone.</h4>
 										<form action="/patient/deletePatient/<%= user._id %>?_method=DELETE" method="POST">
-											<button type="submit">Yes, delete this patient</button>
+											<button id="danger" type="submit">Yes, delete this patient</button>
 										</form>
 									</div>
 								</div>
@@ -97,7 +97,7 @@
 						
 						<hr/>
 						<section id="content" class="default">
-							<header class="major">
+							<header class="major major3">
 								<h2>Advanced Options</h2>
 							</header>
 							<div id="csvdiv" class="content editprof centerButt">
@@ -111,7 +111,7 @@
 										<p>Proceeding will delete your user account and remove access to any associated patients in the database. If your patient has no other associated users, they will also be permanently deleted from the database.</p>
 										<h4>This action cannot be undone.</h4>
 										<form action="/patient/deleteAcct/<%= user._id %>?_method=DELETE" method="POST">
-											<button type="submit">Yes, delete my account</button>
+											<button  id="danger" type="submit">Yes, delete my account</button>
 										</form>
 									</div>
 								</div>

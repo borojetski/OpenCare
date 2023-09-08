@@ -209,17 +209,26 @@ module.exports = {
   },
   deletePatient: async (req, res) => {
     try {
-      // Find patient by id
-      let patient = await Patient.findById({ _id: req.params.id });
-      
-      // Delete patient from db
-      await Patient.deleteOne({ _id: req.params.id });
-      console.log("Deleted Patient");
+      const patient = await Patient.findOne({ userIds: req.params.id });
+      if(patient.userIds.length === 1) {
+        // If only 1 user ID, delete entire patient
+        await Patient.findByIdAndDelete(patient._id); 
+        console.log("Deleted patient");
+      } else {
+        // Otherwise remove just current user ID from array
+        patient.userIds = patient.userIds.filter(userId => userId.toString() !== req.user._id.toString());
+        await patient.save();
+      }
+      // Unset current user's patient profile flag
+      const user = await User.findById(req.user._id);
+      user.hasPatientProfile = false; 
+      await user.save();
       res.redirect("/dashboard");
     } catch (err) {
-      res.redirect("/dashboard");
+      console.log(err);
+      return res.redirect("/profile");
     }
-  },
+  },  
   deleteAcct: async (req, res) => {
     try {
       // Delete patients from db
