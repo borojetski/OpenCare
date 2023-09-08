@@ -211,15 +211,12 @@ module.exports = {
     try {
       const patient = await Patient.findOne({ userIds: req.params.id });
       if(patient.userIds.length === 1) {
-        // If only 1 user ID, delete entire patient
         await Patient.findByIdAndDelete(patient._id); 
         console.log("Deleted patient");
       } else {
-        // Otherwise remove just current user ID from array
         patient.userIds = patient.userIds.filter(userId => userId.toString() !== req.user._id.toString());
         await patient.save();
       }
-      // Unset current user's patient profile flag
       const user = await User.findById(req.user._id);
       user.hasPatientProfile = false; 
       await user.save();
@@ -228,18 +225,23 @@ module.exports = {
       console.log(err);
       return res.redirect("/profile");
     }
-  },  
+  },
   deleteAcct: async (req, res) => {
     try {
-      // Delete patients from db
-      await Patient.deleteMany({ userId: req.params.id });
-      console.log("Deleted All User Patients");
-      // Delete user from db
+      const patient = await Patient.findOne({ userIds: req.params.id });
+      if (patient.userIds.length === 1) {
+        await Patient.deleteMany({ userIds: req.params.id });
+        console.log("Deleted patient");
+      } else {
+        patient.userIds = patient.userIds.filter(userId => userId.toString() !== req.user._id.toString());
+        await patient.save();
+      }
       await User.deleteOne({ _id: req.params.id });
       console.log("Deleted User Acct");
       res.redirect("/");
     } catch (err) {
-      res.redirect("/dashboard");
+      console.log(err);
+      return res.redirect("/profile");
     }
   },
 };
