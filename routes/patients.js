@@ -10,6 +10,7 @@ router.put("/addShop/:id", patientsController.addShop);
 router.put("/editUser/:id", patientsController.editUser);
 router.put("/editPatient/:id", patientsController.editPatient);
 router.get("/getCsv/:id", patientsController.getCsv);
+router.delete("/deleteShopItem/:id/:item", patientsController.deleteShopItem);
 router.delete("/deletePatient/:id", patientsController.deletePatient);
 router.delete("/deleteAcct/:id", patientsController.deleteAcct);
 

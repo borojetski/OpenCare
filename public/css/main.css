@@ -2096,7 +2096,21 @@ input, select, textarea {
 
 		#danger {
 			background-color: rgb(71, 44, 44);
-		} 
+		}
+
+		.table-x {
+			scale: 50%;
+		}
+		  
+			.close-x {
+				display: inline-block;
+				transform: scale(2);
+		  }
+
+		  .form-tbl-item {
+			margin: 0;
+		  }
+		  
 
 /* Form */
 
@@ -2736,6 +2750,14 @@ input, select, textarea {
 			table tbody tr:nth-child(2n + 1) {
 				background-color: #383F47;
 			}
+
+			.med-table td:nth-child(4) {
+				width: 1%;
+			  }
+
+			.list-table td:nth-child(2) {
+				width: 1%;
+			  }
 
 		table td {
 			padding: 0.75em 0.75em;
@@ -3705,3 +3727,4 @@ input, select, textarea {
   #editBday {
 	background-color: #383F47;
   }
+  
