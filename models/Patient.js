@@ -10,6 +10,14 @@ const PatientSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  allergies: {
+    type: String,
+    required: false
+  },
+  dnr: {
+    type: String,
+    required: false
+  },
   phoneNbr: {
     type: String,
     required: false
@@ -36,6 +44,11 @@ const PatientSchema = new mongoose.Schema({
     ],
     default: []
   }],
+  care: [{
+    type: String,
+    required: false,
+    default: [],
+}],
   shopping: [{
     type: String,
     required: false,

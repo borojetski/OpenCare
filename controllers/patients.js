@@ -102,10 +102,12 @@ module.exports = {
       return res.status(400).json({ error: 'A patient with this name and birthday already exists.' });
     }
     try {
-      const { name, bday, phoneNbr, insurNbr } = req.body;
+      const { name, bday, allergies, dnr, phoneNbr, insurNbr } = req.body;
       await Patient.create({
         name,
         bday,
+        allergies,
+        dnr,
         phoneNbr,
         insurNbr,
         userIds: [req.user.id],
