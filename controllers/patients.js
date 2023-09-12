@@ -156,6 +156,23 @@ module.exports = {
       res.redirect("/dashboard");
     }
   },
+  addCare: async (req, res) => {
+    try {
+      await Patient.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $push: {
+            care: req.body.name
+          }          
+        },
+        { new: true },
+      );
+      console.log("Care Notes Updated")
+      res.redirect("/dashboard");
+    } catch (err) {
+      res.redirect("/dashboard");
+    }
+  },
   addShop: async (req, res) => {
     try {
       await Patient.findOneAndUpdate(
@@ -186,6 +203,26 @@ module.exports = {
         if (itemIndex >= 0 && itemIndex < updatedMeds.length) {
           updatedMeds.splice(itemIndex, 1);
           patient.meds = updatedMeds;
+          await patient.save();
+        }
+      }
+      res.redirect("/dashboard");
+    } catch (err) {
+      console.error(err);
+      return res.redirect("/dashboard");
+    }
+  },
+  deleteCareItem: async (req, res) => {
+    const patientId = req.params.id;
+    const itemIndex = req.params.item;
+    try {
+      const patient = await Patient.findOne({ _id: patientId });
+      if (patient) {
+        const care = patient.care;
+        const updatedCare = [...care];
+        if (itemIndex >= 0 && itemIndex < updatedCare.length) {
+          updatedCare.splice(itemIndex, 1);
+          patient.care = updatedCare;
           await patient.save();
         }
       }
