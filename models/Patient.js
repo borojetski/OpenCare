@@ -49,6 +49,11 @@ const PatientSchema = new mongoose.Schema({
     required: false,
     default: [],
 }],
+diet: [{
+  type: String,
+  required: false,
+  default: [],
+}],
   shopping: [{
     type: String,
     required: false,

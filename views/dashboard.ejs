@@ -233,7 +233,7 @@
 												<table class="list-table">
 												  <thead>
 													<tr>
-													  <th>Name</th>
+													  <th>Note</th>
 													</tr>
 												  </thead>
 												  <tbody>
@@ -256,6 +256,49 @@
 									</div>
 								</section>
 
+								<!-- Diet -->
+									<section id="diet" class="spotlight" data-section="patientProfile">
+										<div class="image"><img src="images/cutlery.svg" alt="" /></div>
+										<div class="content acclist centerButt">
+											<h2>Personal Menu</h2>
+												<div class="accordion">
+													<button class="accordion-toggle">Add Item</button>
+													<div class="accordion-content">
+														<form method="POST" action="/patient/addDiet/<%= patients[i]._id %>?_method=PUT">
+															<label for="dietName">Item Name:</label>
+															<input name="name" type="text" id="dietName">										
+															<button type="submit">Submit</button>
+														</form>
+													</div>
+												</div>
+											<section>
+												<div class="table-wrapper">
+													<table class="list-table">
+													  <thead>
+														<tr>
+														  <th>Note</th>
+														</tr>
+													  </thead>
+													  <tbody>
+														  <% for(let j = 0; j < patients[i].diet.length; j++) { %>
+															<tr>
+															  <td><%= patients[i].diet[j] %></td>
+															  <td>
+																<form class="form-tbl-item" action="/patient/deleteDietItem/<%= patients[i]._id %>/<%= j %>?_method=DELETE" method="POST">
+																	<button class="table-x">
+																		<span class="close-x">X</span>
+																	</button>
+																</form>
+															  </td>
+															</tr>
+														  <% } %>
+													  </tbody>
+													</table>
+												  </div>
+											</section>
+										</div>
+									</section>
+
 							<!-- Shopping List -->
 								<section id="shopping" class="spotlight" data-section="patientProfile">
 									<div class="image"><img src="images/cart.svg" alt="" /></div>
@@ -276,7 +319,7 @@
 												<table class="list-table">
 												  <thead>
 													<tr>
-													  <th>Name</th>
+													  <th>Item</th>
 													</tr>
 												  </thead>
 												  <tbody>
