@@ -171,11 +171,31 @@ module.exports = {
       res.redirect("/dashboard");
     }
   },
-  deleteShopItem: async (req, res) => {
+  deleteMedItem: async (req, res) => {
     const patientId = req.params.id;
     console.log(patientId);
     const itemIndex = req.params.item;
     console.log(itemIndex);
+    try {
+      const patient = await Patient.findOne({ _id: patientId });
+      if (patient) {
+        const meds = patient.meds;
+        const updatedMeds = [...meds];
+        if (itemIndex >= 0 && itemIndex < updatedMeds.length) {
+          updatedMeds.splice(itemIndex, 1);
+          patient.meds = updatedMeds;
+          await patient.save();
+        }
+      }
+      res.redirect("/dashboard");
+    } catch (err) {
+      console.error(err);
+      return res.redirect("/dashboard");
+    }
+  },
+  deleteShopItem: async (req, res) => {
+    const patientId = req.params.id;
+    const itemIndex = req.params.item;
     try {
       const patient = await Patient.findOne({ _id: patientId });
       if (patient) {

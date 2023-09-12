@@ -188,7 +188,13 @@
 														<td><%= patients[i].meds[j][k].name %></td>
 														<td><%= patients[i].meds[j][k].dosage %></td>
 														<td><%= patients[i].meds[j][k].notes %></td>
-														<td><button class="table-x"><span class="close-x">X</span></button>
+														<td>
+															<form class="form-tbl-item" action="/patient/deleteMedItem/<%= patients[i]._id %>/<%= j %>?_method=DELETE" method="POST">
+																<button class="table-x">
+																	<span class="close-x">X</span>
+																</button>
+															</form>
+														</td>
 													  </tr>
 													<% } %>
 												  <% } %>  
