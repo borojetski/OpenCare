@@ -20,21 +20,28 @@ accordions.forEach(accordion => {
 // Show/Hide Welcome Screen/Patient Profile
 const getStartedSections = document.querySelectorAll('[data-section="getStarted"]');
 const patientProfileSections = document.querySelectorAll('[data-section="patientProfile"]');
+const patientProfileSectionsBlk = document.querySelectorAll('[data-section="patientProfile-blk"]');
 
 if (userHPP) {
     getStartedSections.forEach(section => {
-    section.style.display = 'none'; 
-    });
+      section.style.display = 'none'; 
+      });
     patientProfileSections.forEach(section => {
-    section.style.display = 'block';
-    });
+      section.style.display = 'flex';
+      });
+    patientProfileSectionsBlk.forEach(section => {
+      section.style.display = 'block';
+      });
     } else {
     getStartedSections.forEach(section => {
-    section.style.display = 'block';
-    });
+      section.style.display = 'block';
+      });
     patientProfileSections.forEach(section => {
-    section.style.display = 'none';
-    });
+      section.style.display = 'none';
+      });
+    patientProfileSectionsBlk.forEach(section => {
+      section.style.display = 'none';
+      });
 }
 
 // Show/Hide Calendar Import

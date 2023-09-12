@@ -2389,6 +2389,12 @@ input, select, textarea {
 				width: 100%;
 			}
 
+			@media screen and (max-width: 980px) {
+				.image {
+				  display: none; 
+				}
+			  }
+
 /* List */
 
 	ol {
@@ -3409,7 +3415,7 @@ input, select, textarea {
 		}
 
 			#main .spotlight .image {
-				width: 33.333333333%;
+				width: 25%;
 			}
 
 				#main .spotlight .image img {
@@ -3418,7 +3424,7 @@ input, select, textarea {
 
 			#main .spotlight .content {
 				padding: 4em 4em 2em 4em ;
-				width: 66.666666666%;
+				width: 75%;
 			}
 
 			#main .spotlight.alt {
