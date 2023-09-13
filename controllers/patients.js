@@ -300,9 +300,10 @@ module.exports = {
       }
       await user.save();
       req.flash("success", { msg: "Profile updated successfully!" });
-      res.redirect("/profile");
+      res.redirect("/dashboard");
     } catch (err) {
       console.log(err);
+      return res.redirect("/profile");
     }
   },
   editPatient: async (req, res) => {
@@ -320,9 +321,10 @@ module.exports = {
         }
       );
       console.log("Patient Updated");
-      res.redirect("/profile");
+      res.redirect("/dashboard");
     } catch (err) {
       console.log(err);
+      return res.redirect("/profile");      
     }
   },
   deletePatient: async (req, res) => {
