@@ -1,5 +1,6 @@
 const Patient = require("../models/Patient");
 const User = require("../models/User");
+const {stringify} = require('csv-stringify');
 const fs = require('fs');
 const { ObjectId } = require("mongodb")
 
@@ -45,7 +46,7 @@ module.exports = {
   getCsv: async (req, res) => {
     try {
       const people = await Patient.find({ userIds: req.params.id });
-      const fields = ['name', 'birthday', 'phoneNbr', 'insurNbr', 'meds', 'shopping'];
+      const fields = ['name', 'birthday', 'allergies', 'dnr', 'phoneNbr', 'insurNbr', 'meds', 'care', 'diet', 'shopping'];
       const csvData = [];
       for (const field of fields) {
         people.forEach((item) => {
@@ -59,22 +60,17 @@ module.exports = {
         });
       }
       
-      const fileName = "patient-data.csv";
-      const csvContent = csvData.map((row) => `${row.field}: ${row.value}`).join('\n');
+      stringify(csvData, (err, csvContent) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Internal Server Error');
+        } else {
+          const fileName = "patient-data.csv";
   
-      fs.writeFileSync(fileName, csvContent);
-
-      // sets the response headers for the download
-      res.setHeader('Content-Type', 'text/csv'); // informs browser of file type
-      res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`); // informs browser to treat file as attachment rather than displaying it in browser
-
-      // stream file contents to browser as the data is being read from the file
-      const fileStream = fs.createReadStream(fileName); // creates a stream to read data from a file
-      fileStream.pipe(res); // connects a readable stream to a writable stream
-
-      // deletes temporary file used for streaming the CSV data after the data has been successfully sent as a response; the clean up step
-      fileStream.on('end', () => { //event listener emitted when the entire file has been read and streamed
-        fs.unlinkSync(fileName); //deletes the temporary file that was created earlier to store the CSV data
+          res.setHeader('Content-Type', 'text/csv');
+          res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+          res.send(csvContent);
+        }
       });
     } catch (err) {
       console.error(err);
