@@ -46,14 +46,14 @@ module.exports = {
   getCsv: async (req, res) => {
     try {
       const people = await Patient.find({ userIds: req.params.id });
-      const fields = ['name', 'birthday', 'allergies', 'dnr', 'phoneNbr', 'insurNbr', 'meds', 'care', 'diet', 'shopping'];
+      const fields = ['name', 'bday', 'allergies', 'dnr', 'phoneNbr', 'insurNbr', 'meds', 'care', 'diet', 'shopping'];
       const csvData = [];
       for (const field of fields) {
         people.forEach((item) => {
-          if (field === 'birthday') {
-            const birthday = new Date(item['birthday']);
-            const formattedBirthday = `${birthday.getMonth() + 1}/${birthday.getDate()}/${birthday.getFullYear()}`;
-            csvData.push({ field: 'birthday', value: formattedBirthday });
+          if (field === 'bday') {
+            const birthday = new Date(item['bday']);
+            const formattedBirthday = birthday.toLocaleDateString('en-US', {timeZone: 'UTC', month: '2-digit', day: '2-digit', year: 'numeric'})
+            csvData.push({ field: 'bday', value: formattedBirthday });
           } else {
             csvData.push({ field: field, value: item[field] });
           }
