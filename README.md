@@ -1,5 +1,9 @@
 # OpenCare
 
+![](https://github.com/borojetski/OpenCare/blob/main/loop.gif)
+
+#
+
 This is a collaborative tool and resource designed to assist individuals in caring for elderly, ill, or in-need loved ones. This project does not comply with HIPAA or other healthcare privacy and security regulations and is not intended for actual medical use. Users should refrain from entering personal health information. This app is provided "as-is" under the GPL 3.0 license.
 
 This project is a work in progress. It is designed to assist caregivers with a set of tools to coordinate and manage caregiving tasks. It should not be relied upon as the sole repository for all patient medical data, but rather as a quick reference tool. The app includes the following features:
