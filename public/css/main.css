@@ -1823,21 +1823,27 @@ input, select, textarea {
 	.modal {
 		display: none;
 		position: fixed;
-		top: 50%;
+		top: 30%;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -25%);
 		width: 80%;
 		max-width: 600px;
 		background: #32383f;
 		border: 1px solid #aaa;
 		padding: 2.5em;
 		animation: mmfadeIn 0.3s ease-in-out;
+		max-height: 90vh;
+		overflow-y: auto;
+		padding-top: 3em;
 	}
 
 	@media (max-width: 736px) {
 		.modal {
-			transform: translate(-50%, -50%) scale(.8);
+			transform: translate(-50%, -25%) scale(.8);
 			width: 120%;
+			max-height: 90vh;
+			overflow-y: auto;
+			padding-top: 3em;
 		  }
 	}
 	
