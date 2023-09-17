@@ -27,9 +27,17 @@ module.exports = {
         return res.status(401).render("401");
       }
       const patients = await Patient.find({ userIds: { $in: [req.user.id] } });
-      const patient = patients[0];
-      const birthday = patient.bday.toISOString().split('T')[0];
-      res.render("profile", { patients: patients, patient: patient, birthday: birthday, user: req.user });
+      let patient, birthday;
+      if (patients.length > 0) {
+        patient = patients[0];
+        birthday = patient.bday.toISOString().split('T')[0];
+      }
+      res.render("profile", { 
+        patients: patients, 
+        patient: patient, 
+        birthday: birthday,  
+        user: req.user 
+    });
     } catch (error) {
       console.error(error);
       return res.render("error", { error: error.message });
