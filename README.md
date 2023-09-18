@@ -48,3 +48,14 @@ For any questions, concerns, or input, please feel free to contact the author vi
 ## License
 
 OpenCare is open source under the [GPL 3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+## Work in Progess
+
+- The foundation for sharing a patient among different users is in place, however linking multiple users to a patient is not currently working.
+
+- The next priority is adding a list for specialty healthcare providers and their respective contact info.
+
+- Autosuggest for medication names is currently not working.
+
+- I plan on adding an 'Up-to-date as of...' subheading to the different components.
+
