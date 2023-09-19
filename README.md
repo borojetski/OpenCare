@@ -10,6 +10,8 @@ This project is a work in progress. It is designed to assist caregivers with a s
 
 - **Google Calendar Integration:** Allows multiple users to coordinate and schedule events.
 
+- **Specialty Healthcare Providers:** Reference primary care provider's name and contact info and add additional specialty providers.
+
 - **Medication Tracker:** Keep track of routine medications, to maintain as a quick reference.
 
 - **Personal Medical Care Notes:** Jot down and access specific notes regarding personal medical care instructions.
@@ -52,8 +54,6 @@ OpenCare is open source under the [GPL 3.0 license](https://www.gnu.org/licenses
 ## Work in Progess
 
 - The foundation for sharing a patient among different users is in place, however linking multiple users to a patient is not currently working.
-
-- The next priority is adding a list for specialty healthcare providers and their respective contact info.
 
 - Autosuggest for medication names is currently not working.
 

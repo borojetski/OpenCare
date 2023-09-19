@@ -54,7 +54,7 @@ module.exports = {
   getCsv: async (req, res) => {
     try {
       const people = await Patient.find({ userIds: req.params.id });
-      const fields = ['name', 'bday', 'allergies', 'dnr', 'phoneNbr', 'insurNbr', 'meds', 'care', 'diet', 'shopping'];
+      const fields = ['name', 'bday', 'allergies', 'dnr', 'phoneNbr', 'insurNbr', 'docs', 'meds', 'care', 'diet', 'shopping'];
       const csvData = [];
       for (const field of fields) {
         people.forEach((item) => {
@@ -139,6 +139,27 @@ module.exports = {
       res.redirect("/dashboard");
     }
   },
+  addDoc: async (req, res) => {
+    try {
+      await Patient.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $push: {
+            docs: {
+              name: req.body.name, 
+              spec: req.body.spec,
+              contact: req.body.contact
+            }
+          }
+        },
+        { new: true },
+      );
+      console.log("Specialty Docs Updated")
+      res.redirect("/dashboard");
+    } catch (err) {
+      res.redirect("/dashboard");
+    }
+  },
   addMed: async (req, res) => {
     try {
       await Patient.findOneAndUpdate(
@@ -209,6 +230,28 @@ module.exports = {
       res.redirect("/dashboard");
     } catch (err) {
       res.redirect("/dashboard");
+    }
+  },
+  deleteDocItem: async (req, res) => {
+    const patientId = req.params.id;
+    console.log(patientId);
+    const itemIndex = req.params.item;
+    console.log(itemIndex);
+    try {
+      const patient = await Patient.findOne({ _id: patientId });
+      if (patient) {
+        const docs = patient.docs;
+        const updatedDocs = [...docs];
+        if (itemIndex >= 0 && itemIndex < updatedDocs.length) {
+          updatedDocs.splice(itemIndex, 1);
+          patient.docs = updatedDocs;
+          await patient.save();
+        }
+      }
+      res.redirect("/dashboard");
+    } catch (err) {
+      console.error(err);
+      return res.redirect("/dashboard");
     }
   },
   deleteMedItem: async (req, res) => {

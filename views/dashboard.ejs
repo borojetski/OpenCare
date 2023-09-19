@@ -157,6 +157,62 @@
 							</div>
 						</section>
 
+						<!-- Specialty Docs -->
+							<section id="specDocs" class="spotlight" data-section="patientProfile">
+								<div class="image"><img src="images/doctor-briefcase.svg" alt="" /></div>
+								<div class="content acclist centerButt">
+									<h2>Specialty Healthcare Provider(s)</h2>
+										<div class="accordion">
+											<button class="accordion-toggle">Add Provider</button>
+											<div class="accordion-content">
+												<form method="POST" action="/patient/addDoc/<%= patients[i]._id %>?_method=PUT">
+													<label for="docName">Provider Name:</label>
+													<input name="name" type="text" id="docName">
+									
+													<label for="specDoc">Specialty:</label>
+													<input name="spec" type="text" id="specDoc">
+									
+													<label for="docCont">Contact Info:</label>
+													<input name="contact" type="text" id="docCont">
+									
+													<button type="submit">Submit</button>
+												</form>
+											</div>
+										</div>			
+									<section>
+										<div class="table-wrapper">
+											<table class="med-table">
+											  <thead>
+												<tr>
+												  <th>Name</th>
+												  <th>Specialty</th>
+												  <th>Contact Info</th> 
+												</tr>
+											  </thead>
+											  <tbody>
+												  <% for(let j = 0; j < patients[i].docs.length; j++) { %>
+													<% for(let k = 0; k < patients[i].docs[j].length; k++) { %>
+													  <tr>
+														<td><%= patients[i].docs[j][k].name %></td>
+														<td><%= patients[i].docs[j][k].spec %></td>
+														<td><%= patients[i].docs[j][k].contact %></td>
+														<td>
+															<form class="form-tbl-item" action="/patient/deleteDocItem/<%= patients[i]._id %>/<%= j %>?_method=DELETE" method="POST">
+																<button class="table-x">
+																	<span class="close-x">X</span>
+																</button>
+															</form>
+														</td>
+													  </tr>
+													<% } %>
+												  <% } %>  
+											  </tbody>
+											</table>
+										  </div>
+									</section>
+								</div>
+							</section>
+
 						<!-- Medications -->
 							<section id="medications" class="spotlight" data-section="patientProfile">
 								<div class="image"><img src="images/pills.svg" alt="" /></div>
