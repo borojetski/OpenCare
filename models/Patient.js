@@ -34,6 +34,16 @@ const PatientSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  docs: [{
+    type: [
+      {
+        name: String,
+        spec: String,
+        contact: String  
+      }
+    ],
+    default: []
+  }],
   meds: [{
     type: [
       {
