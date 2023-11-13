@@ -92,6 +92,17 @@
 								<p>DNR Status: <%= patients[i].dnr %></p>
 								<p>Insurance #<%= patients[i].insurNbr %></p>
 							</header>
+							<div class="accordion">
+								<button class="accordion-toggle">Change Patient</button>
+								<div class="accordion-content">
+									<% for (let i = 0; i < patients.length; i++) {%>
+										<a href="/dashboard/patient?id=<%= patients[i].id %>"><%= patients[i].name %></a>
+									<% } %>
+									<button id="addPatientBtn" data-micromodal-trigger="addPatientMModal">
+										Add New Patient
+									</button>
+								</div>
+							</div>
 						</section>
 
 						<!-- Calendar Setup -->
