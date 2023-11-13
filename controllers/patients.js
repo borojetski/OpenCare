@@ -11,7 +11,7 @@ module.exports = {
     }
     try {
       const patients = await Patient.find({ userIds: { $in: [req.user.id] } });
-      const patient = patients[0];
+      const patient = await Patient.findOne({ _id: req.user.currentPt });
       res.render("dashboard.ejs", { patients: patients, patient: patient, user: req.user });
     } catch (err) {
       console.log(err);
@@ -107,7 +107,7 @@ module.exports = {
     }
     try {
       const { name, bday, allergies, dnr, phoneNbr, insurNbr } = req.body;
-      await Patient.create({
+      const newPt = await Patient.create({
         name,
         bday,
         allergies,
@@ -117,7 +117,7 @@ module.exports = {
         userIds: [req.user.id],
         cal: ""
       });
-      await User.updateOne({ _id: req.user.id }, { $set: { hasPatientProfile: true } });
+      await User.updateOne({ _id: req.user.id }, { $set: { hasPatientProfile: true, currentPt: newPt._id } });
       console.log(req.body)
       console.log("Your patient or family member has been added!");
       res.redirect("/dashboard");

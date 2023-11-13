@@ -38,27 +38,26 @@
 							<button id="addPatientBtn" data-micromodal-trigger="addPatientMModal">
 								Add a Patient or Loved One
 							</button>
-						</section>
 
-						<% for (let i = 0; i < patients.length; i++) {%>
+						</section>
 				
 						<!-- Patient Info -->
 						<section id="first" class="cta" data-section="patientProfile-blk">
 							<header>
-								<h2><%= patients[i].name %></h2>
-								<p><%= patients[i].phoneNbr %></p>
-								<p>DOB: <%= patients[i].bday.toLocaleDateString('en-US', {timeZone: 'UTC', month: '2-digit', day: '2-digit', year: 'numeric'}) %></p>
-								<p>Allergies: <%= patients[i].allergies %></p>
-								<p>DNR Status: <%= patients[i].dnr %></p>
-								<p>Insurance #<%= patients[i].insurNbr %></p>
+								<h2><%= patient.name %></h2>
+								<p><%= patient.phoneNbr %></p>
+								<p>DOB: <%= patient.bday.toLocaleDateString('en-US', {timeZone: 'UTC', month: '2-digit', day: '2-digit', year: 'numeric'}) %></p>
+								<p>Allergies: <%= patient.allergies %></p>
+								<p>DNR Status: <%= patient.dnr %></p>
+								<p>Insurance #<%= patient.insurNbr %></p>
 							</header>
 							<div class="accordion">
 								<button class="accordion-toggle">Change Patient</button>
 								<div class="accordion-content">
-									<% for (let j = 0; j < patients.length; j++) { %>
-										<% if (j !== i) { %>
+									<% for (let i = 0; i < patients.length; i++) { %>
+										<% if (i == i) { %>
 										  <li>
-											<a href="/dashboard/patient?id=<%= patients[j].id %>"><%= patients[j].name %></a>
+											<a href=""><%= patient.name %></a>
 										  </li>
 										<% } %>									  
 									  <% } %>
@@ -76,7 +75,7 @@
 									<h2>Import Google Calendar</h2>
 									<p>Using the instructions below, import a read-only google calendar to view upcoming or past events.</br>
 									Paste calendar iframe here:</p>
-									<form method="POST" action="/patient/addCal/<%= patients[i]._id %>?_method=PUT">
+									<form method="POST" action="/patient/addCal/<%= patient._id %>?_method=PUT">
 										<label for="calInput">iframe key:</label>
 										<input name="calInput" type="text" id="calInput">
 										<button type="submit">Submit</button>
@@ -119,11 +118,11 @@
 						<!-- Calendar -->
 						<section data-section="iframeCal">
 							<div class="content">
-								<%- patients[i].cal %>
+								<%- patient.cal %>
 								<div class="accordion centerButt">
 									<button class="accordion-toggle">Change Calendar</button>
 									<div class="accordion-content">
-										<form method="POST" action="/patient/addCal/<%= patients[i]._id %>?_method=PUT">
+										<form method="POST" action="/patient/addCal/<%= patient._id %>?_method=PUT">
 											<label for="calInput">New iframe Key:</label>
 											<input name="calInput" type="text" id="calInput">										
 											<button type="submit">Submit</button>
@@ -141,7 +140,7 @@
 										<div class="accordion">
 											<button class="accordion-toggle">Add Provider</button>
 											<div class="accordion-content">
-												<form method="POST" action="/patient/addDoc/<%= patients[i]._id %>?_method=PUT">
+												<form method="POST" action="/patient/addDoc/<%= patient._id %>?_method=PUT">
 													<label for="docName">Provider Name:</label>
 													<input name="name" type="text" id="docName">
 									
@@ -166,14 +165,14 @@
 												</tr>
 											  </thead>
 											  <tbody>
-												  <% for(let j = 0; j < patients[i].docs.length; j++) { %>
-													<% for(let k = 0; k < patients[i].docs[j].length; k++) { %>
+												  <% for(let i = 0; i < patient.docs.length; i++) { %>
+													<% for(let j = 0; j < patient.docs[i].length; j++) { %>
 													  <tr>
-														<td><%= patients[i].docs[j][k].name %></td>
-														<td><%= patients[i].docs[j][k].spec %></td>
-														<td><%= patients[i].docs[j][k].contact %></td>
+														<td><%= patient.docs[i][j].name %></td>
+														<td><%= patient.docs[i][j].spec %></td>
+														<td><%= patient.docs[i][j].contact %></td>
 														<td>
-															<form class="form-tbl-item" action="/patient/deleteDocItem/<%= patients[i]._id %>/<%= j %>?_method=DELETE" method="POST">
+															<form class="form-tbl-item" action="/patient/deleteDocItem/<%= patient._id %>/<%= i %>?_method=DELETE" method="POST">
 																<button class="table-x">
 																	<span class="close-x">X</span>
 																</button>
@@ -197,7 +196,7 @@
 										<div class="accordion">
 											<button class="accordion-toggle">Add Medication</button>
 											<div class="accordion-content">
-												<form method="POST" action="/patient/addMed/<%= patients[i]._id %>?_method=PUT">
+												<form method="POST" action="/patient/addMed/<%= patient._id %>?_method=PUT">
 													<label for="medName">Medication Name:</label>
 													<input name="name" type="text" id="medName">
 									
@@ -222,14 +221,14 @@
 												</tr>
 											  </thead>
 											  <tbody>
-												  <% for(let j = 0; j < patients[i].meds.length; j++) { %>
-													<% for(let k = 0; k < patients[i].meds[j].length; k++) { %>
+												  <% for(let i = 0; i < patient.meds.length; i++) { %>
+													<% for(let j = 0; j < patient.meds[i].length; j++) { %>
 													  <tr>
-														<td><%= patients[i].meds[j][k].name %></td>
-														<td><%= patients[i].meds[j][k].dosage %></td>
-														<td><%= patients[i].meds[j][k].notes %></td>
+														<td><%= patient.meds[i][j].name %></td>
+														<td><%= patient.meds[i][j].dosage %></td>
+														<td><%= patient.meds[i][j].notes %></td>
 														<td>
-															<form class="form-tbl-item" action="/patient/deleteMedItem/<%= patients[i]._id %>/<%= j %>?_method=DELETE" method="POST">
+															<form class="form-tbl-item" action="/patient/deleteMedItem/<%= patient._id %>/<%= i %>?_method=DELETE" method="POST">
 																<button class="table-x">
 																	<span class="close-x">X</span>
 																</button>
@@ -253,7 +252,7 @@
 											<div class="accordion">
 												<button class="accordion-toggle">Add Note</button>
 												<div class="accordion-content">
-													<form method="POST" action="/patient/addCare/<%= patients[i]._id %>?_method=PUT">
+													<form method="POST" action="/patient/addCare/<%= patient._id %>?_method=PUT">
 														<label for="careName">Item Name:</label>
 														<input name="name" type="text" id="careName">										
 														<button type="submit">Submit</button>
@@ -269,11 +268,11 @@
 													</tr>
 												  </thead>
 												  <tbody>
-													  <% for(let j = 0; j < patients[i].care.length; j++) { %>
+													  <% for(let i = 0; i < patient.care.length; i++) { %>
 														<tr>
-														  <td><%= patients[i].care[j] %></td>
+														  <td><%= patient.care %></td>
 														  <td>
-															<form class="form-tbl-item" action="/patient/deleteCareItem/<%= patients[i]._id %>/<%= j %>?_method=DELETE" method="POST">
+															<form class="form-tbl-item" action="/patient/deleteCareItem/<%= patient._id %>/<%= i %>?_method=DELETE" method="POST">
 																<button class="table-x">
 																	<span class="close-x">X</span>
 																</button>
@@ -296,7 +295,7 @@
 												<div class="accordion">
 													<button class="accordion-toggle">Add Item</button>
 													<div class="accordion-content">
-														<form method="POST" action="/patient/addDiet/<%= patients[i]._id %>?_method=PUT">
+														<form method="POST" action="/patient/addDiet/<%= patient._id %>?_method=PUT">
 															<label for="dietName">Item Name:</label>
 															<input name="name" type="text" id="dietName">										
 															<button type="submit">Submit</button>
@@ -312,11 +311,11 @@
 														</tr>
 													  </thead>
 													  <tbody>
-														  <% for(let j = 0; j < patients[i].diet.length; j++) { %>
+														  <% for(let i = 0; i < patient.diet.length; i++) { %>
 															<tr>
-															  <td><%= patients[i].diet[j] %></td>
+															  <td><%= patient.diet[i] %></td>
 															  <td>
-																<form class="form-tbl-item" action="/patient/deleteDietItem/<%= patients[i]._id %>/<%= j %>?_method=DELETE" method="POST">
+																<form class="form-tbl-item" action="/patient/deleteDietItem/<%= patient._id %>/<%= i %>?_method=DELETE" method="POST">
 																	<button class="table-x">
 																		<span class="close-x">X</span>
 																	</button>
@@ -339,7 +338,7 @@
 											<div class="accordion">
 												<button class="accordion-toggle">Add Item</button>
 												<div class="accordion-content">
-													<form method="POST" action="/patient/addShop/<%= patients[i]._id %>?_method=PUT">
+													<form method="POST" action="/patient/addShop/<%= patient._id %>?_method=PUT">
 														<label for="shopName">Item Name:</label>
 														<input name="name" type="text" id="shopName">										
 														<button type="submit">Submit</button>
@@ -355,11 +354,11 @@
 													</tr>
 												  </thead>
 												  <tbody>
-													  <% for(let j = 0; j < patients[i].shopping.length; j++) { %>
+													  <% for(let i = 0; i < patient.shopping.length; i++) { %>
 														<tr>
-														  <td><%= patients[i].shopping[j] %></td>
+														  <td><%= patient.shopping[i] %></td>
 														  <td>
-															<form class="form-tbl-item" action="/patient/deleteShopItem/<%= patients[i]._id %>/<%= j %>?_method=DELETE" method="POST">
+															<form class="form-tbl-item" action="/patient/deleteShopItem/<%= patient._id %>/<%= i %>?_method=DELETE" method="POST">
 																<button class="table-x">
 																	<span class="close-x">X</span>
 																</button>
@@ -403,6 +402,46 @@
 								</div>
 							</section> -->
 
+						<!-- Add new patient modal -->
+						<div id="addPatientMModal" class="modal" aria-hidden="true">
+							<div tabindex="-1" data-micromodal-close>
+							<div role="dialog" aria-modal="true" aria-labelledby="addPatientModalTitle">
+								<header>
+								<img id="modal-close-button" data-micromodal-close src="/css/images/close.svg" alt="Close modal"/>
+								<h2 id="addPatientModalTitle">
+									Add Patient
+								</h2>
+								</header>
+								<div id="addPatientModalContent">
+								<div id="error-messages"></div>
+									<form method="POST" action="/patient/createPatient">
+								
+									<label for="name">Name:</label>
+									<input type="text" id="name" name="name">
+									
+									<label for="bday">Birthday:</label>
+									<input type="date" id="bday" name="bday">
+									
+									<label for="allergies">Allergies:</label>
+									<input type="text" id="allergies" name="allergies">
+									
+									<label for="dnr">DNR Status:</label>
+									<input type="text" id="dnr" name="dnr">
+									
+									<label for="phoneNbr">Phone Number:</label>
+									<input type="tel" id="phoneNbr" name="phoneNbr">
+									
+									<label for="insurNbr">Insurance ID:</label>
+									<input type="text" id="insurNbr" name="insurNbr">
+									
+									<button type="submit">Submit</button>
+									<button type="button" data-micromodal-close>Cancel</button>
+								</form>
+								</div>
+							</div>
+							</div>
+						</div>
+
 					</div>
 
 				<!-- Footer -->
@@ -423,53 +462,12 @@
 						</div>
 					</section>
 
-				<!-- Add new patient modal -->
-				<div id="addPatientMModal" class="modal" aria-hidden="true">
-					<div tabindex="-1" data-micromodal-close>
-					<div role="dialog" aria-modal="true" aria-labelledby="addPatientModalTitle">
-						<header>
-						<img id="modal-close-button" data-micromodal-close src="/css/images/close.svg" alt="Close modal"/>
-						<h2 id="addPatientModalTitle">
-							Add Patient
-						</h2>
-						</header>
-						<div id="addPatientModalContent">
-						<div id="error-messages"></div>
-							<form method="POST" action="/patient/createPatient">
-						
-							<label for="name">Name:</label>
-							<input type="text" id="name" name="name">
-							
-							<label for="bday">Birthday:</label>
-							<input type="date" id="bday" name="bday">
-							
-							<label for="allergies">Allergies:</label>
-							<input type="text" id="allergies" name="allergies">
-							
-							<label for="dnr">DNR Status:</label>
-							<input type="text" id="dnr" name="dnr">
-							
-							<label for="phoneNbr">Phone Number:</label>
-							<input type="tel" id="phoneNbr" name="phoneNbr">
-							
-							<label for="insurNbr">Insurance ID:</label>
-							<input type="text" id="insurNbr" name="insurNbr">
-							
-							<button type="submit">Submit</button>
-							<button type="button" data-micromodal-close>Cancel</button>
-						</form>
-						</div>
-					</div>
-					</div>
-				</div>
-
 			</div>
 
 <script>
     const userHPP = <%= user.hasPatientProfile %>;
-	const ptHCal = '<%= patients[i].cal %>';
+	const ptHCal = '<%= patient.cal %>';
 </script>
-<% } %>
 <script src="/js/dashboard.js"></script>
 
 <%- include('partials/footer') -%>

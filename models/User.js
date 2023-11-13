@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   password: String,
   hasPatientProfile: { type:Boolean, required: true, default: false },
+  currentPt: { type: mongoose.Schema.Types.ObjectId, ref: 'Patient', default: null },
 })
 
 // Password hash middleware.
